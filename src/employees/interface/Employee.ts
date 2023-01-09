@@ -1,6 +1,8 @@
 export interface IEmployee {
-    id: Number,
+    id: number,
     firstname: String,
     surname: String,
-    middlename: String
+    middlename: String,
+    created: Date,
+    updated: Date
 }
