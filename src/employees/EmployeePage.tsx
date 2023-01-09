@@ -5,7 +5,7 @@ import EmployeeTable from "./component/EmployeeTable";
 
 function EmployeePage() {
     console.log("I am loading Employee page")
-    const {employees} = useEmployees();
+    const {employees, addEmployee} = useEmployees();
     console.log(employees)
     return <EmployeeTable employees={employees}/>
 }

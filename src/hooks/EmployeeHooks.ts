@@ -2,11 +2,12 @@ import {IEmployee} from "../employees/interface/Employee";
 import {useEffect, useState} from "react";
 import {proxyAxios} from "../backend/Constant";
 
-export interface Response{
-    employees: IEmployee[]
+export interface UseEmployee{
+    employees: IEmployee[],
+    addEmployee: (employee: IEmployee) => void
 }
-export function useEmployees(): Response {
-    const [employees, setEmployees] = useState<IEmployee[]>();
+export function useEmployees(): UseEmployee {
+    const [employees, setEmployees] = useState<IEmployee[]>([]);
     // const [error, setError] = useState<String>();
     // const [loading, setLoading] = useState<Boolean>();
     useEffect(() => {
@@ -17,7 +18,12 @@ export function useEmployees(): Response {
                 }
             })
     }, [])
+
+    const addEmployee = (employee: IEmployee) => {
+        setEmployees([...employees ,employee])
+    }
     return {
-        employees: employees === undefined ? [] : employees
+        employees: employees,
+        addEmployee: addEmployee
     };
 }
