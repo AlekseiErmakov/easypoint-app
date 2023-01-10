@@ -9,7 +9,7 @@ function EmployeePage() {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
-    const [middleName, setMiddleName] = useState('');
+    const [lastname, setLastname] = useState('');
     console.log("I am loading Employee page")
     const {employees, addEmployee} = useEmployees();
 
@@ -22,7 +22,7 @@ function EmployeePage() {
     };
 
     const handleSave = () => {
-        addEmployee({firstname: name, surname: surname, middlename: middleName})
+        addEmployee({firstname: name, surname: surname, lastname: lastname})
         handleClose();
     }
 
@@ -54,12 +54,12 @@ function EmployeePage() {
                 <TextField
                     autoFocus
                     margin="dense"
-                    id="middlename"
+                    id="lastname"
                     label="Middle name"
                     type="text"
                     fullWidth
                     variant="standard"
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setMiddleName(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setLastname(e.target.value)}
                 />
             </DialogContent>
             <DialogActions>

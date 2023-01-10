@@ -36,7 +36,7 @@ export default function EmployeeTable(prop: EmployeeTableProp) {
     const employees: ITableEmployee[] = prop.employees.map(e => {
         return {
             id: e.id.toString(),
-            fullName: e.surname + ' ' + e.firstname + ' ' + e.middlename,
+            fullName: e.surname + ' ' + e.firstname + ' ' + e.lastname,
             created: e.created.toString(),
             updated: e.updated.toString()
         }

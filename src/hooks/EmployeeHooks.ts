@@ -10,7 +10,7 @@ export interface UseEmployee {
 export interface EmployeeCreateRequest {
     firstname: string;
     surname: string;
-    middlename: string;
+    lastname: string;
 }
 
 export function useEmployees(): UseEmployee {
