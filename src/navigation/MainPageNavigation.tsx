@@ -14,6 +14,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import ListItemText from '@mui/material/ListItemText';
 import {Badge, CalendarMonth} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
@@ -173,6 +174,27 @@ export default function MiniDrawer() {
                                 <CalendarMonth/>
                             </ListItemIcon>
                             <ListItemText primary="Timetable" sx={{opacity: open ? 1 : 0}}/>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem key="time-shift" disablePadding sx={{display: 'block'}}>
+                        <ListItemButton
+                            sx={{
+                                minHeight: 48,
+                                justifyContent: open ? 'initial' : 'center',
+                                px: 2.5,
+                            }}
+                        >
+                            <ListItemIcon
+                                sx={{
+                                    minWidth: 0,
+                                    mr: open ? 3 : 'auto',
+                                    justifyContent: 'center',
+                                }}
+                                onClick={(event) => navigate("/employee-shift-types")}
+                            >
+                                <AccessAlarmIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary="Work shift types" sx={{opacity: open ? 1 : 0}}/>
                         </ListItemButton>
                     </ListItem>
                 </List>

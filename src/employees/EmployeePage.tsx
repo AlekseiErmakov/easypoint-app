@@ -1,9 +1,16 @@
 import React, {ChangeEvent, useState} from "react";
-import {useEmployees} from "../hooks/EmployeeHooks";
+import {useBackEnd} from "../hooks/EmployeeHooks";
 import EmployeeTable from "./component/EmployeeTable";
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, Fab, TextField} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import {IEmployee} from "./interface/Employee";
 
+
+export interface EmployeeCreateRequest {
+    firstname: string;
+    surname: string;
+    lastname: string;
+}
 
 function EmployeePage() {
     const [open, setOpen] = useState(false);
@@ -11,7 +18,7 @@ function EmployeePage() {
     const [surname, setSurname] = useState('');
     const [lastname, setLastname] = useState('');
     console.log("I am loading Employee page")
-    const {employees, addEmployee} = useEmployees();
+    const {data, addData} = useBackEnd<IEmployee, EmployeeCreateRequest>('/employee');
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -22,7 +29,7 @@ function EmployeePage() {
     };
 
     const handleSave = () => {
-        addEmployee({firstname: name, surname: surname, lastname: lastname})
+        addData({firstname: name, surname: surname, lastname: lastname})
         handleClose();
     }
 
@@ -67,12 +74,12 @@ function EmployeePage() {
                 <Button onClick={handleSave}>Save</Button>
             </DialogActions>
         </Dialog>
-        <EmployeeTable employees={employees}/>
+        <EmployeeTable employees={data}/>
         <Fab color="primary" aria-label="add" sx={{
             position: 'fixed',
             bottom: '25px',
             right: '25px'
-        }} onClick={() => setOpen(true)}>
+        }} onClick={handleClickOpen}>
             <AddIcon/>
         </Fab>
 

@@ -4,6 +4,7 @@ import EmployeePage from "./employees/EmployeePage";
 import TimetablePage from "./timetable/TimetablePage";
 import MiniDrawer, {DrawerHeader} from "./navigation/MainPageNavigation";
 import {Box} from "@mui/material";
+import EmployeeShiftPage from "./shift/EmployeeShiftPage";
 
 function App() {
     console.log("I am loading App")
@@ -15,6 +16,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<EmployeePage/>}/>
                     <Route path="/timetable" element={<TimetablePage/>}/>
+                    <Route path="/employee-shift-types" element={<EmployeeShiftPage/>}/>
                 </Routes>
             </Box>
         </Box>

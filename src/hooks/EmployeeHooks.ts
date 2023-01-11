@@ -1,41 +1,34 @@
-import {IEmployee} from "../employees/interface/Employee";
 import {useEffect, useState} from "react";
 import {proxyAxios} from "../backend/Constant";
 
-export interface UseEmployee {
-    employees: IEmployee[],
-    addEmployee: (employee: EmployeeCreateRequest) => void
+export interface UseBackend<T, V> {
+    data: T[],
+    addData: (employee: V) => void
 }
 
-export interface EmployeeCreateRequest {
-    firstname: string;
-    surname: string;
-    lastname: string;
-}
-
-export function useEmployees(): UseEmployee {
-    const [employees, setEmployees] = useState<IEmployee[]>([]);
+export function useBackEnd<T, V>(path: string): UseBackend<T, V> {
+    const [items, setItems] = useState<T[]>([]);
     // const [error, setError] = useState<String>();
     // const [loading, setLoading] = useState<Boolean>();
     useEffect(() => {
-        proxyAxios.get<IEmployee[]>("/employee")
+        proxyAxios.get<T[]>(path)
             .then(result => {
                 if (result.data !== undefined) {
-                    setEmployees(result.data)
+                    setItems(result.data)
                 }
             })
     }, [])
 
-    const addEmployee = (employee: EmployeeCreateRequest) => {
-        proxyAxios.post<IEmployee>('/employee', employee)
+    const addItem = (item: V) => {
+        proxyAxios.post<T>(path, item)
             .then(result => {
-                if (result.data !== undefined){
-                    setEmployees([...employees, result.data])
+                if (result.data !== undefined) {
+                    setItems([...items, result.data])
                 }
             })
     }
     return {
-        employees: employees,
-        addEmployee: addEmployee
+        data: items,
+        addData: addItem
     };
 }
