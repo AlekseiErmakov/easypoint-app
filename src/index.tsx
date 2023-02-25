@@ -1,18 +1,50 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import MainPage from './MainPage';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
+import {configureStore} from "@reduxjs/toolkit";
+import {Provider} from "react-redux";
+import {authReducer} from "./view/login/reducer";
+import {employeeApi} from "./api/employee";
+import MainLayout from "./view/layout";
+import {pointApi} from "./api/point";
+
+
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
+
+export const store = configureStore({
+    reducer: {
+        auth: authReducer,
+        [employeeApi.reducerPath]: employeeApi.reducer,
+        [pointApi.reducerPath]: pointApi.reducer
+    },
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(employeeApi.middleware, pointApi.middleware)
+})
+
+
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
+const App = () => {
+    return (
+        <Provider store={store}>
+            <React.StrictMode>
+                <BrowserRouter>
+                    <MainPage/>
+                </BrowserRouter>
+            </React.StrictMode>
+        </Provider>
+    )
+};
+
 root.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <App/>
-        </BrowserRouter>
-    </React.StrictMode>
+    <App/>
 );
 
 // If you want to start measuring performance in your app, pass a function
