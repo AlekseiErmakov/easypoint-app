@@ -1,26 +1,42 @@
 import {FormInstance} from "antd/es/form/hooks/useForm";
-import {IPoint} from "./index";
-import {Form, Input} from "antd";
-import React from "react";
+import {IPoint, IPointCreateRequest, IPointType} from "./index";
+import {Form, Input, Select} from "antd";
+import React, {useState} from "react";
 
 interface PointFormProps {
-    onFinish: (point: IPoint) => void;
+    onFinish: (point: IPointCreateRequest) => void;
     form: FormInstance;
+    pointTypes: IPointType[]
 }
 
 const PointForm = (props: PointFormProps) => {
+    const form = props.form;
+    const[pointType, setPointType] = useState(0)
+    const handlePointTypeChange = (value: number) => {
+        setPointType(value);
+    }
+    const onFinish = (value: IPointCreateRequest) => {
+        props.onFinish({...value, ...{pointTypeId: pointType}});
+    }
 
     return (
         <div>
             <Form
-                form={props.form}
+                form={form}
                 name="basic"
                 labelCol={{span: 4}}
                 wrapperCol={{span: 20}}
                 initialValues={{remember: true}}
-                onFinish={props.onFinish}
+                onFinish={onFinish}
                 autoComplete="off"
             >
+                <span>Point type:</span>
+                <Select
+                    defaultValue={props.pointTypes ? props.pointTypes[0]?.id : null}
+                    style={{ width: 390, marginLeft: "10px", marginBottom: '20px' }}
+                    onChange={handlePointTypeChange}
+                    options={props.pointTypes.map(it => ({label: it.name, value: it.id}))}
+                />
                 <Form.Item
                     label="Name"
                     name="name"

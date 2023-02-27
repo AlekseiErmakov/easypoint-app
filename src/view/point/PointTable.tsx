@@ -2,10 +2,18 @@ import {ColumnsType} from "antd/es/table";
 import {toDateString} from "../../hooks";
 import React from "react";
 import {IPoint} from "./index";
-import {Table} from "antd";
+import {Popover, Table} from "antd";
 import {IEmployee} from "../employee";
 
 const columns: ColumnsType<IPoint> = [
+    {
+        title: 'Point type',
+        dataIndex: 'pointType',
+        key: 'pointType',
+        render: (value) => <Popover content={value.description} title={value.name}>
+            <div>{value.name}</div>
+        </Popover>
+    },
     {
         title: 'Name',
         dataIndex: 'name',
@@ -55,7 +63,7 @@ interface PointTableProps {
 
 const PointTable = (props: PointTableProps) => {
     return (
-        <Table columns={columns} dataSource={props.points}/>
+        <Table columns={columns} dataSource={props.points} rowKey={(it)=> (it.id)}/>
     )
 }
 

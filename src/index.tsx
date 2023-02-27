@@ -8,7 +8,7 @@ import {Provider} from "react-redux";
 import {authReducer} from "./view/login/reducer";
 import {employeeApi} from "./api/employee";
 import MainLayout from "./view/layout";
-import {pointApi} from "./api/point";
+import {pointApi, pointTypeApi} from "./api/point";
 
 
 
@@ -20,9 +20,10 @@ export const store = configureStore({
     reducer: {
         auth: authReducer,
         [employeeApi.reducerPath]: employeeApi.reducer,
-        [pointApi.reducerPath]: pointApi.reducer
+        [pointApi.reducerPath]: pointApi.reducer,
+        [pointTypeApi.reducerPath]: pointTypeApi.reducer
     },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(employeeApi.middleware, pointApi.middleware)
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(employeeApi.middleware, pointApi.middleware, pointTypeApi.middleware)
 })
 
 
