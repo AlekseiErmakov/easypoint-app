@@ -11,9 +11,20 @@ export enum PointTypes {
     REFERENCE_POINT, WALL_MARK, FIXED_POINT
 }
 
+export enum PointStates {
+    CREATED, LOST, UPDATE_REQUIRED, NOT_AVAILABLE, READY_TO_USE
+}
+
 export interface IPointType {
     id: number;
     code: PointTypes;
+    name: string;
+    description: string;
+}
+
+export interface IPointState {
+    id: number;
+    code: PointStates;
     name: string;
     description: string;
 }
@@ -25,6 +36,7 @@ export interface IPoint {
     y: number;
     h: number;
     pointType: IPointType;
+    pointState: IPointState;
     created?: Date;
     updated?: Date;
     creator: IEmployee;

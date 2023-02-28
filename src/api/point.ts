@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import {IPoint, IPointCreateRequest, IPointType} from "../view/point";
+import {IPoint, IPointCreateRequest, IPointState, IPointType} from "../view/point";
 
 export const pointApi = createApi({
     reducerPath: 'easyPoint/point',
@@ -46,5 +46,20 @@ export const pointTypeApi = createApi({
         })
     })
 });
-
 export const {useSearchPointTypesQuery} = pointTypeApi;
+export const pointStateApi = createApi({
+    reducerPath: 'easyPoint/pointStates',
+    baseQuery: fetchBaseQuery({
+        credentials: 'include'
+    }),
+    refetchOnFocus: true,
+    endpoints: build => ({
+        searchPointStates: build.query<IPointState[], void>({
+            query: () => ({
+                url: '/point-state'
+            }),
+        })
+    })
+})
+export const {useSearchPointStatesQuery} = pointStateApi;
+

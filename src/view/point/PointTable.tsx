@@ -15,6 +15,14 @@ const columns: ColumnsType<IPoint> = [
         </Popover>
     },
     {
+        title: 'Point state',
+        dataIndex: 'pointState',
+        key: 'pointState',
+        render: (value) => <Popover content={value.description} title={value.name}>
+            <div>{value.name}</div>
+        </Popover>
+    },
+    {
         title: 'Name',
         dataIndex: 'name',
         key: 'name'

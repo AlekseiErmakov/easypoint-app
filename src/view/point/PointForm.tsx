@@ -32,7 +32,7 @@ const PointForm = (props: PointFormProps) => {
             >
                 <span>Point type:</span>
                 <Select
-                    defaultValue={props.pointTypes ? props.pointTypes[0]?.id : null}
+                    defaultValue={props.pointTypes ? props.pointTypes[0]?.id : 1}
                     style={{ width: 390, marginLeft: "10px", marginBottom: '20px' }}
                     onChange={handlePointTypeChange}
                     options={props.pointTypes.map(it => ({label: it.name, value: it.id}))}
