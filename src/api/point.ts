@@ -23,13 +23,22 @@ export const pointApi = createApi({
                     body,
                 }
             },
-            invalidatesTags: [{type: 'Points'}],
+            invalidatesTags: [{type: 'Points'}]
+        }),
+        deletePoint: build.mutation<void, number>({
+            query(pointId) {
+                return {
+                    url: `/point/${pointId}`,
+                    method: 'POST'
+                }
+            },
+            invalidatesTags: [{type: 'Points'}]
         })
     })
 });
 
 
-export const {useCreatePointMutation, useSearchPointsQuery} = pointApi;
+export const {useCreatePointMutation, useSearchPointsQuery, useDeletePointMutation} = pointApi;
 
 
 export const pointTypeApi = createApi({
