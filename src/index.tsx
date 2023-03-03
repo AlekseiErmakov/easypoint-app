@@ -7,9 +7,8 @@ import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import {authReducer} from "./view/login/reducer";
 import {employeeApi} from "./api/employee";
-import MainLayout from "./view/layout";
 import {pointApi, pointTypeApi} from "./api/point";
-
+import {totalStationApi} from "./api/totalStation";
 
 
 const root = ReactDOM.createRoot(
@@ -21,11 +20,11 @@ export const store = configureStore({
         auth: authReducer,
         [employeeApi.reducerPath]: employeeApi.reducer,
         [pointApi.reducerPath]: pointApi.reducer,
-        [pointTypeApi.reducerPath]: pointTypeApi.reducer
+        [pointTypeApi.reducerPath]: pointTypeApi.reducer,
+        [totalStationApi.reducerPath]: totalStationApi.reducer
     },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(employeeApi.middleware, pointApi.middleware, pointTypeApi.middleware)
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(employeeApi.middleware, pointApi.middleware, pointTypeApi.middleware, totalStationApi.middleware)
 })
-
 
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

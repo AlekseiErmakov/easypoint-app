@@ -96,7 +96,7 @@ const PointPage = () => {
         setPointForDelete(undefined)
     }
 
-    return <div style={{padding: '50px'}}>
+    return <div>
         <Button type="primary" shape="round" icon={<PlusOutlined/>} size={'large'}
                 onClick={showModal}
                 style={{position: 'relative', float: 'right', marginBottom: '20px'}}/>

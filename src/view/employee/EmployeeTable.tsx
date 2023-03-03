@@ -42,7 +42,7 @@ export interface EmployeeTableProps {
 
 const EmployeeTable = (props: EmployeeTableProps) => {
     return <>
-        {<Table columns={columns} dataSource={props.employees}/>}
+        {<Table columns={columns} dataSource={props.employees} rowKey={(it)=> (it.id)} />}
     </>
 }
 

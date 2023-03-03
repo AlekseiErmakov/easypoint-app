@@ -1,10 +1,18 @@
 import {Layout, Menu, MenuProps, theme} from "antd";
 import React from "react";
-import {BorderOuterOutlined, LaptopOutlined, NotificationOutlined, TeamOutlined, UserOutlined} from "@ant-design/icons";
+import {
+    BorderOuterOutlined,
+    LaptopOutlined,
+    NotificationOutlined,
+    TeamOutlined,
+    ToolOutlined,
+    UserOutlined
+} from "@ant-design/icons";
 import {ItemType} from "antd/es/menu/hooks/useItems";
 import EmployeePage from "../employee";
 import {Link, Route, Routes} from "react-router-dom";
 import PointPage from "../point";
+import TotalStationPage from "../tool/totalStation";
 
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -44,20 +52,28 @@ const pointMenuItem: ItemType = {
     children: [{key: 'pointsList', label: <Link to={'/points'}>Points</Link>}]
 }
 
-const menuItems = [employeeMenuItem, pointMenuItem];
+const toolMenuItem: ItemType = {
+    key: 'tools',
+    icon: <ToolOutlined  />,
+    label: 'Tools',
+
+    children: [{key: 'totalStationList', label: <Link to={'/tools/total-stations'}>Total stations</Link>}]
+}
+
+const menuItems = [employeeMenuItem, pointMenuItem, toolMenuItem];
 const MainLayout = () => {
     const {
         token: {colorBgContainer},
     } = theme.useToken();
 
     return (
-        <Layout>
+        <Layout style={{display: 'flex', flexDirection:'column', minHeight: '100vh'}}>
             <Header style={{backgroundColor: "#1890ff"}}>
                 <div className="logo">
                 </div>
             </Header>
-            <Content style={{padding: '0 50px'}}>
-                <Layout style={{padding: '24px 0', background: colorBgContainer}}>
+            <Content style={{flexGrow: 1, display:'flex'}}>
+                <Layout style={{background: colorBgContainer, flexGrow:1}}>
                     <Sider style={{background: colorBgContainer}} width={200}>
                         <Menu
                             mode="inline"
@@ -67,10 +83,11 @@ const MainLayout = () => {
                             items={menuItems}
                         />
                     </Sider>
-                    <Content style={{padding: '0 24px', minHeight: 280}}>
+                    <Content style={{minHeight: 280}}>
                         <Routes>
                             <Route path="/employees" element={<EmployeePage/>} />
                             <Route path="/points" element={<PointPage/>} />
+                            <Route path="/tools/total-stations" element={<TotalStationPage/>}/>
                         </Routes>
                     </Content>
                 </Layout>

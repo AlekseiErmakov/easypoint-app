@@ -76,7 +76,7 @@ const PointTable = (props: PointTableProps) => {
             title: 'Delete',
             render: (_, point) => {
                 return point.pointState.code === PointStates.CREATED ?
-                    <div onClick={ _ => props.showDeleteModal(point)}><DeleteOutlined/></div> : <>Strange</>
+                    <div onClick={ _ => props.showDeleteModal(point)}><DeleteOutlined/></div> : <></>
             }
         }
     ];

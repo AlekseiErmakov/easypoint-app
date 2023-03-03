@@ -7,7 +7,7 @@ import EmployeeForm from "./EmployeeForm";
 
 
 export interface IEmployee {
-    id?: string;
+    id: number;
     firstname: string;
     surname: string;
     lastname: string;
@@ -35,7 +35,7 @@ const EmployeePage = () => {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
-    return <div style={{padding: '50px'}}>
+    return <div>
         <Button type="primary" shape="round" icon={<UserAddOutlined/>} size={'large'}
                 onClick={showModal}
                 style={{position: 'relative', float: 'right' , marginBottom: '20px'}}/>

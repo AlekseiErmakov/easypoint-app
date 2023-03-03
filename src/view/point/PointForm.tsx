@@ -10,6 +10,7 @@ interface PointFormProps {
 }
 
 const PointForm = (props: PointFormProps) => {
+
     const form = props.form;
     const[pointType, setPointType] = useState(0)
     const handlePointTypeChange = (value: number) => {
