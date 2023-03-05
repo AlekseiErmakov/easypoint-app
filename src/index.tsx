@@ -9,6 +9,8 @@ import {authReducer} from "./view/login/reducer";
 import {employeeApi} from "./api/employee";
 import {pointApi, pointTypeApi} from "./api/point";
 import {totalStationApi} from "./api/totalStation";
+import {areaStructureApi} from "./api/areaStructure";
+import {areaStructureTypeApi} from "./api/areaStructureType";
 
 
 const root = ReactDOM.createRoot(
@@ -21,9 +23,12 @@ export const store = configureStore({
         [employeeApi.reducerPath]: employeeApi.reducer,
         [pointApi.reducerPath]: pointApi.reducer,
         [pointTypeApi.reducerPath]: pointTypeApi.reducer,
-        [totalStationApi.reducerPath]: totalStationApi.reducer
+        [totalStationApi.reducerPath]: totalStationApi.reducer,
+        [areaStructureApi.reducerPath]: areaStructureApi.reducer,
+        [areaStructureTypeApi.reducerPath]: areaStructureTypeApi.reducer
     },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(employeeApi.middleware, pointApi.middleware, pointTypeApi.middleware, totalStationApi.middleware)
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(employeeApi.middleware, pointApi.middleware,
+        pointTypeApi.middleware, totalStationApi.middleware, areaStructureApi.middleware, areaStructureTypeApi.middleware)
 })
 
 

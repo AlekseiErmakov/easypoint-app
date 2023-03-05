@@ -3,7 +3,7 @@ import React from "react";
 import {
     BorderOuterOutlined,
     LaptopOutlined,
-    NotificationOutlined,
+    NotificationOutlined, PartitionOutlined,
     TeamOutlined,
     ToolOutlined,
     UserOutlined
@@ -13,6 +13,8 @@ import EmployeePage from "../employee";
 import {Link, Route, Routes} from "react-router-dom";
 import PointPage from "../point";
 import TotalStationPage from "../tool/totalStation";
+import AreaStructureTypePage from "../structure/area/types";
+import AreaStructurePage from "../structure/area";
 
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -60,7 +62,18 @@ const toolMenuItem: ItemType = {
     children: [{key: 'totalStationList', label: <Link to={'/tools/total-stations'}>Total stations</Link>}]
 }
 
-const menuItems = [employeeMenuItem, pointMenuItem, toolMenuItem];
+const structureMenuItem: ItemType = {
+    key: 'structure',
+    icon: <PartitionOutlined />,
+    label: 'Structure',
+
+    children: [
+        {key: 'areaStructureTypes', label: <Link to={'/structure/area-types'}>Area structure types</Link>},
+        {key: 'areaStructure', label: <Link to={'/structure/area'}>Area structure</Link>}
+    ]
+}
+
+const menuItems = [employeeMenuItem, pointMenuItem, toolMenuItem, structureMenuItem];
 const MainLayout = () => {
     const {
         token: {colorBgContainer},
@@ -83,11 +96,13 @@ const MainLayout = () => {
                             items={menuItems}
                         />
                     </Sider>
-                    <Content style={{minHeight: 280}}>
+                    <Content style={{minHeight: 280, paddingRight: 10}}>
                         <Routes>
                             <Route path="/employees" element={<EmployeePage/>} />
                             <Route path="/points" element={<PointPage/>} />
                             <Route path="/tools/total-stations" element={<TotalStationPage/>}/>
+                            <Route path="/structure/area-types" element={<AreaStructureTypePage/>}/>
+                            <Route path="/structure/area" element={<AreaStructurePage/>}/>
                         </Routes>
                     </Content>
                 </Layout>
