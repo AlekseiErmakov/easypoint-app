@@ -96,7 +96,7 @@ const MainLayout = () => {
                             items={menuItems}
                         />
                     </Sider>
-                    <Content style={{minHeight: 280, paddingRight: 10}}>
+                    <Content style={{minHeight: 280, paddingRight: 10, paddingTop: 10}}>
                         <Routes>
                             <Route path="/employees" element={<EmployeePage/>} />
                             <Route path="/points" element={<PointPage/>} />

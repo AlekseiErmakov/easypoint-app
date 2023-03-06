@@ -10,6 +10,7 @@ import {PlusOutlined} from "@ant-design/icons";
 import AreaStructureTypeForm from "./types/AreaStructureTypeForm";
 import {AreaStructureForm} from "./AreaStructureForm";
 import {useSearchAreaStructureTypeQuery} from "../../../api/areaStructureType";
+import EpButton from "../../../components/Button";
 
 export interface IAreaStructure {
     id: number;
@@ -21,7 +22,9 @@ export interface IAreaStructure {
 }
 
 export interface TreeAreaStructure extends TreeDataNode {
+    value: number;
     description: string;
+    label: string;
     parent?: IAreaStructure;
     areaStructureType: IAreaStructureType;
 }
@@ -76,13 +79,9 @@ const AreaStructurePage = () => {
                 draggable
                 blockNode
             /></Col>
-            <Col flex={3}><Button type="primary" shape="round" icon={<PlusOutlined/>} size={'large'}
-                                  onClick={showModal}
-                                  style={{position: 'relative', float: 'right', marginBottom: '20px', marginTop: '20px'}}/></Col>
+            <Col flex={3}><EpButton onClick={showModal} icon={<PlusOutlined/>}/></Col>
         </Row>
-
-
-        <Modal title="Add total station" open={showAddModal} onOk={form.submit} onCancel={handleCancel}>
+        <Modal title="Add area" open={showAddModal} onOk={form.submit} onCancel={handleCancel} width={500}>
             <AreaStructureForm onFinish={handleOk} form={form} areas={areas.data ? areas.data : []} areaStructureTypes={areaStructureTypes.data ? areaStructureTypes.data : []}/>
         </Modal>
     </div>

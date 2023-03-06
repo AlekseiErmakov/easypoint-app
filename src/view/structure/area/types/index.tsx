@@ -9,6 +9,7 @@ import {useSearchAreaStructureQuery} from "../../../../api/areaStructure";
 import {useCreateAreaStructureTypeMutation, useSearchAreaStructureTypeQuery} from "../../../../api/areaStructureType";
 import AreaStructureTypeTable from "./AreaStructureTypeTable";
 import AreaStructureTypeForm from "./AreaStructureTypeForm";
+import EpButton from "../../../../components/Button";
 
 export interface IAreaStructureType {
     id: number;
@@ -41,9 +42,7 @@ const AreaStructureTypePage = () => {
     }
 
     return <>
-        <Button type="primary" shape="round" icon={<PlusOutlined/>} size={'large'}
-                onClick={showModal}
-                style={{position: 'relative', float: 'right', marginBottom: '20px', marginTop: '20px'}}/>
+        <EpButton icon={<PlusOutlined/>} onClick={showModal}/>
         <AreaStructureTypeTable areaStructureTypes={data ? data : []}/>
         <Modal title="Add total station" open={showAddModal} onOk={form.submit} onCancel={handleCancel}>
             <AreaStructureTypeForm onFinish={handleOk} form={form}/>

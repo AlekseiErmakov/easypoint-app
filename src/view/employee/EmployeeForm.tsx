@@ -1,4 +1,4 @@
-import {Button, Checkbox, Form, Input} from "antd";
+import {Form, Input} from "antd";
 import React from "react";
 import {IEmployee} from "./index";
 import {FormInstance} from "antd/es/form/hooks/useForm";
@@ -14,8 +14,8 @@ const EmployeeForm = (props: EmployeeFormProps) => {
             <Form
                 form={props.form}
                 name="basic"
-                labelCol={{span: 4}}
-                wrapperCol={{span: 20}}
+                labelCol={{span: 6}}
+                wrapperCol={{span: 18}}
                 initialValues={{remember: true}}
                 onFinish={props.onFinish}
                 autoComplete="off"

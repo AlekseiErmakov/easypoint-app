@@ -14,13 +14,12 @@ const TotalStationForm = (props: TotalStationFormProps) => {
         <Form
             form={props.form}
             name="basic"
-            labelCol={{span: 4}}
-            wrapperCol={{span: 20}}
+            labelCol={{span: 6}}
+            wrapperCol={{span: 18}}
             initialValues={{remember: true}}
             onFinish={props.onFinish}
             autoComplete="off"
         >
-            <span>Point type:</span>
             <Form.Item
                 label="Firm"
                 name="firm"

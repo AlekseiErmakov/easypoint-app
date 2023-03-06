@@ -4,6 +4,7 @@ import {useCreateEmployeeMutation, useSearchEmployeesQuery} from "../../api/empl
 import EmployeeTable from "./EmployeeTable";
 import {UserAddOutlined} from "@ant-design/icons";
 import EmployeeForm from "./EmployeeForm";
+import EpButton from "../../components/Button";
 
 
 export interface IEmployee {
@@ -35,15 +36,13 @@ const EmployeePage = () => {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
-    return <div>
-        <Button type="primary" shape="round" icon={<UserAddOutlined/>} size={'large'}
-                onClick={showModal}
-                style={{position: 'relative', float: 'right' , marginBottom: '20px'}}/>
+    return <>
+        <EpButton onClick={showModal} icon={<UserAddOutlined/>}/>
         {isLoading ? <h1>Loading</h1> : <EmployeeTable employees={data ? data : []}/>}
         <Modal title="Basic Modal" open={isModalOpen} onOk={form.submit} onCancel={handleCancel}>
             <EmployeeForm onFinish={handleOk} form={form}/>
         </Modal>
-    </div>
+    </>
 }
 
 export default EmployeePage;

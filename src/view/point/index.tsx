@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Form, Modal} from "antd";
+import {Form, Modal} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import {IEmployee} from "../employee";
 import {
@@ -10,6 +10,9 @@ import {
 } from "../../api/point";
 import PointTable from "./PointTable";
 import PointForm from "./PointForm";
+import {useSearchAreaStructureQuery} from "../../api/areaStructure";
+import {IArea} from "../structure/area";
+import EpButton from "../../components/Button";
 
 
 export enum PointTypes {
@@ -44,6 +47,7 @@ export interface IPoint {
     x: number;
     y: number;
     h: number;
+    areas: IArea[];
     pointType: IPointType;
     pointState: IPointState;
     created?: Date;
@@ -57,11 +61,13 @@ export interface IPointCreateRequest {
     y: number;
     h: number;
     pointTypeId: number;
+    pointAreaId: number;
 }
 
 const PointPage = () => {
     const {data, isLoading} = useSearchPointsQuery();
     const pointTypes = useSearchPointTypesQuery();
+    const areas = useSearchAreaStructureQuery();
     const [addPoint] = useCreatePointMutation()
     const [deletePoint] = useDeletePointMutation();
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -97,12 +103,11 @@ const PointPage = () => {
     }
 
     return <div>
-        <Button type="primary" shape="round" icon={<PlusOutlined/>} size={'large'}
-                onClick={showModal}
-                style={{position: 'relative', float: 'right', marginBottom: '20px'}}/>
+        <EpButton icon={<PlusOutlined/>} onClick={showModal}/>
         {isLoading ? <h1>Loading</h1> : <PointTable points={data ? data : []} showDeleteModal={showDeleteModal}/>}
-        <Modal title="Add point" open={isModalOpen} onOk={form.submit} onCancel={handleCancel}>
-            <PointForm onFinish={handleOk} form={form} pointTypes={pointTypes.data ? pointTypes.data : []}/>
+        <Modal title="Add point" open={isModalOpen} onOk={form.submit} onCancel={handleCancel} width={500}>
+            <PointForm onFinish={handleOk} form={form} pointTypes={pointTypes.data ? pointTypes.data : []}
+                       areaStructure={areas.data ? areas.data : []}/>
         </Modal>
         <Modal title="Delete Point" open={pointForDelete !== undefined} onOk={handleDelete}
                onCancel={handleDeleteCancel}>

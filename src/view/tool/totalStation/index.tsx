@@ -4,6 +4,7 @@ import React, {useState} from "react";
 import {PlusOutlined} from "@ant-design/icons";
 import {Button, Form, Modal} from "antd";
 import TotalStationForm from "./TotalStationForm";
+import EpButton from "../../../components/Button";
 
 export interface ITotalStation {
     id: number;
@@ -38,11 +39,9 @@ const TotalStationPage = () => {
     }
 
     return <>
-        <Button type="primary" shape="round" icon={<PlusOutlined/>} size={'large'}
-                onClick={showModal}
-                style={{position: 'relative', float: 'right', marginBottom: '20px', marginTop: '20px'}}/>
+        <EpButton icon={<PlusOutlined/>} onClick={showModal}/>
         <TotalStationTable totalStations={data ? data : []}/>
-        <Modal title="Add total station" open={showAddModal} onOk={form.submit} onCancel={handleCancel}>
+        <Modal title="Add total station" open={showAddModal} onOk={form.submit} onCancel={handleCancel} width={500}>
             <TotalStationForm onFinish={handleOk} form={form}/>
         </Modal>
     </>

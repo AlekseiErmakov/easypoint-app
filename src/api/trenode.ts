@@ -5,6 +5,8 @@ export const toTreeNode = (areaStructure: IAreaStructure): TreeAreaStructure => 
     return {
         key: areaStructure.id,
         title: areaStructure.name,
+        label: areaStructure.name,
+        value: areaStructure.id,
         description: areaStructure.description,
         areaStructureType: areaStructure.areaStructureType,
         parent: areaStructure.parent,

@@ -15,13 +15,12 @@ const AreaStructureTypeForm = (props: AreaStructureTypeProps) => {
         <Form
             form={props.form}
             name="basic"
-            labelCol={{span: 4}}
-            wrapperCol={{span: 20}}
+            labelCol={{span: 6}}
+            wrapperCol={{span: 18}}
             initialValues={{remember: true}}
             onFinish={props.onFinish}
             autoComplete="off"
         >
-            <span>Area structure type:</span>
             <Form.Item
                 label="Name"
                 name="name"
