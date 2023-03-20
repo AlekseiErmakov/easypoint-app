@@ -1,11 +1,7 @@
-import {useCreateAreaStructureTypeMutation, useSearchAreaStructureTypeQuery} from "../../../../api/areaStructureType";
 import React, {useState} from "react";
 import {Form, Modal} from "antd";
 import EpButton from "../../../../components/Button";
 import {PlusOutlined} from "@ant-design/icons";
-import AreaStructureTypeTable from "../../area/types/AreaStructureTypeTable";
-import AreaStructureTypeForm from "../../area/types/AreaStructureTypeForm";
-import {AreaStructureTypeCreateRequest} from "../../area/types";
 import AdminStructureTypeForm from "./AdminStructureTypeForm";
 import AdminStructureTypeTable from "./AdminStructureTypeTable";
 import {

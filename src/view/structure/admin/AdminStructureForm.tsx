@@ -1,20 +1,20 @@
 import {FormInstance} from "antd/es/form/hooks/useForm";
-import {IAreaStructureType} from "./types";
-import {AreaStructureCreateRequest, IArea} from "./index";
 import {Form, Input, Select} from "antd";
 import React from "react";
+import {IAdminStructureType} from "./types";
+import {AdminStructureCreateRequest, IAdmin} from "./index";
 
-interface AreaStructureTypeProps {
+interface AdminStructureTypeProps {
     form: FormInstance;
 
-    areas: IArea[];
-    areaStructureTypes: IAreaStructureType[];
+    areas: IAdmin[];
+    adminStructureTypes: IAdminStructureType[];
 
-    onFinish: (areaStructure: AreaStructureCreateRequest) => void;
+    onFinish: (adminStructure: AdminStructureCreateRequest) => void;
 }
 
 
-export const AreaStructureForm = (props: AreaStructureTypeProps) => {
+export const AdminStructureForm = (props: AdminStructureTypeProps) => {
     return <>
         <Form
             form={props.form}
@@ -25,21 +25,21 @@ export const AreaStructureForm = (props: AreaStructureTypeProps) => {
             onFinish={props.onFinish}
             autoComplete="off"
         >
-            <Form.Item name="areaStructureTypeId" label="Area structure type" rules={[{required: true}]}
+            <Form.Item name="adminStructureTypeId" label="Admin structure type" rules={[{required: true}]}
                        initialValue={undefined}>
-                <Select options={props.areaStructureTypes.map(it => ({label: it.name, value: it.id}))}/>
+                <Select options={props.adminStructureTypes.map(it => ({label: it.name, value: it.id}))}/>
             </Form.Item>
-            <Form.Item name="parentId" label="Area structure parent"
+            <Form.Item name="parentId" label="Admin structure parent"
                        initialValue={undefined}>
                 <Select options={props.areas.map(it => ({label: it.name, value: it.id}))}/>
             </Form.Item>
             <Form.Item label="Name" name="name"
-                       rules={[{required: true, message: 'Please input area structure type name!'}]}
+                       rules={[{required: true, message: 'Please input admin structure type name!'}]}
             >
                 <Input/>
             </Form.Item>
             <Form.Item label="Description" name="description"
-                       rules={[{required: true, message: 'Please input area structure type description!'}]}
+                       rules={[{required: true, message: 'Please input admin structure type description!'}]}
             >
                 <Input/>
             </Form.Item>

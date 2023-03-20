@@ -12,6 +12,7 @@ import {totalStationApi} from "./api/totalStation";
 import {areaStructureApi} from "./api/areaStructure";
 import {areaStructureTypeApi} from "./api/areaStructureType";
 import {adminStructureTypeApi} from "./api/adminStructureType";
+import {adminStructureApi} from "./api/adminStructure";
 
 
 const root = ReactDOM.createRoot(
@@ -27,10 +28,12 @@ export const store = configureStore({
         [totalStationApi.reducerPath]: totalStationApi.reducer,
         [areaStructureApi.reducerPath]: areaStructureApi.reducer,
         [areaStructureTypeApi.reducerPath]: areaStructureTypeApi.reducer,
-        [adminStructureTypeApi.reducerPath]: adminStructureTypeApi.reducer
+        [adminStructureTypeApi.reducerPath]: adminStructureTypeApi.reducer,
+        [adminStructureApi.reducerPath]: adminStructureApi.reducer
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(employeeApi.middleware, pointApi.middleware,
-        pointTypeApi.middleware, totalStationApi.middleware, areaStructureApi.middleware, areaStructureTypeApi.middleware, adminStructureTypeApi.middleware)
+        pointTypeApi.middleware, totalStationApi.middleware, areaStructureApi.middleware, areaStructureTypeApi.middleware,
+        adminStructureTypeApi.middleware, adminStructureApi.middleware)
 })
 
 

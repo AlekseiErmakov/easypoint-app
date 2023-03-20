@@ -16,6 +16,7 @@ import TotalStationPage from "../tool/totalStation";
 import AreaStructureTypePage from "../structure/area/types";
 import AreaStructurePage from "../structure/area";
 import AdminStructureTypePage from "../structure/admin/types";
+import AdminStructurePage from "../structure/admin";
 
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -71,7 +72,8 @@ const structureMenuItem: ItemType = {
     children: [
         {key: 'adminStructureTypes', label: <Link to={'/structure/admin-types'}>Admin structure types</Link>},
         {key: 'areaStructureTypes', label: <Link to={'/structure/area-types'}>Area structure types</Link>},
-        {key: 'areaStructure', label: <Link to={'/structure/area'}>Area structure</Link>}
+        {key: 'areaStructure', label: <Link to={'/structure/area'}>Area structure</Link>},
+        {key: 'adminStructure', label: <Link to={'/structure/admin'}>Admin structure</Link>}
     ]
 }
 
@@ -106,6 +108,7 @@ const MainLayout = () => {
                             <Route path="/structure/area-types" element={<AreaStructureTypePage/>}/>
                             <Route path="/structure/admin-types" element={<AdminStructureTypePage/>}/>
                             <Route path="/structure/area" element={<AreaStructurePage/>}/>
+                            <Route path="/structure/admin" element={<AdminStructurePage/>}/>
                         </Routes>
                     </Content>
                 </Layout>
