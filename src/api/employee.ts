@@ -4,6 +4,7 @@ import {IEmployee} from "../view/employee";
 export const employeeApi = createApi({
     reducerPath: 'easyPoint/employee',
     baseQuery: fetchBaseQuery({
+        baseUrl: 'employees',
         credentials: 'include'
     }),
     tagTypes: ['Employees'],
@@ -11,14 +12,14 @@ export const employeeApi = createApi({
     endpoints: build => ({
         searchEmployees: build.query<IEmployee[], void>({
             query: () => ({
-                url: '/employee'
+                url: ''
             }),
             providesTags: ['Employees']
         }),
         createEmployee: build.mutation<IEmployee, IEmployee>({
             query(body) {
                 return {
-                    url: `/employee`,
+                    url: ``,
                     method: 'POST',
                     body,
                 }

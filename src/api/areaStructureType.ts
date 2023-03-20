@@ -7,7 +7,7 @@ export const areaStructureTypeApi = createApi({
     refetchOnFocus: true,
     tagTypes: ['AREA_STRUCTURE_TYPE'],
     baseQuery: fetchBaseQuery({
-        baseUrl: '/area-structure-type',
+        baseUrl: '/area-structure-types',
         credentials: 'include'
     }),
     endpoints: build => ({

@@ -6,7 +6,7 @@ export const totalStationApi = createApi({
     reducerPath: 'easyPoint/tool/totalStation',
     baseQuery: fetchBaseQuery({
         credentials: "include",
-        baseUrl: '/tool/total-station'
+        baseUrl: '/tools/total-stations'
     }),
     tagTypes: ['TOTAL_STATION'],
     refetchOnFocus: true,

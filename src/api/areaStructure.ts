@@ -14,13 +14,13 @@ export const areaStructureApi = createApi({
     refetchOnFocus: true,
     tagTypes: ['AREA_STRUCTURE'],
     baseQuery: fetchBaseQuery({
-        baseUrl: '/area-structure',
+        baseUrl: '/areas',
         credentials: 'include'
     }),
     endpoints: build => ({
         searchAreaStructure: build.query<TreeAreaStructure[], void>({
             query: () => ({
-                url: '',
+                url: '/structure',
                 method: 'GET'
             }),
             transformResponse: (response: IAreaStructure[]): TreeAreaStructure[] => {
@@ -30,7 +30,7 @@ export const areaStructureApi = createApi({
         }),
         searchAreas: build.query<IArea[], void>({
             query: () => ({
-                url: '/areas',
+                url: '',
                 method: 'GET'
             }),
             providesTags: ['AREA_STRUCTURE']

@@ -1,20 +1,33 @@
 import {FormInstance} from "antd/es/form/hooks/useForm";
-import {IPointCreateRequest, IPointType} from "./index";
+import {IPoint, IPointType} from "./index";
 import {Form, Input, Select, TreeSelect} from "antd";
-import React, {useState} from "react";
-import {IArea, IAreaStructure, TreeAreaStructure} from "../structure/area";
-import {Simulate} from "react-dom/test-utils";
-import submit = Simulate.submit;
+import React, {useEffect} from "react";
+import {TreeAreaStructure} from "../structure/area";
 
 interface PointFormProps {
-    onFinish: (point: IPointCreateRequest) => void;
+    onFinish: (point: PointFormResult) => void;
     form: FormInstance;
     areaStructure: TreeAreaStructure[];
-    pointTypes: IPointType[]
+    pointTypes: IPointType[];
+    point?: IPoint;
+}
+
+export interface PointFormResult {
+    name: string;
+    x: number;
+    y: number;
+    h: number;
+    pointTypeId: number;
+    pointAreaId: number;
 }
 
 
 const PointForm = (props: PointFormProps) => {
+    const point = props.point;
+    useEffect(() => {
+        console.log(point)
+        props.form.setFieldsValue({...point, ...{pointTypeId: point?.pointType?.id}, ...{pointAreaId: point?.rootAreaId}});
+    }, [props.point]);
     return (
         <Form
             form={props.form}
@@ -25,15 +38,15 @@ const PointForm = (props: PointFormProps) => {
             onFinish={props.onFinish}
             autoComplete="off"
         >
-            <Form.Item name="pointTypeId" label="Point type" rules={[{ required: true }]} initialValue={undefined}>
+            <Form.Item name="pointTypeId" label="Point type" rules={[{required: true}]}>
                 <Select
                     options={props.pointTypes.map(it => ({label: it.name, value: it.id}))}
                 />
             </Form.Item>
-            <Form.Item name="area" label="Area" rules={[{ required: true }]} initialValue={undefined}>
+            <Form.Item name="pointAreaId" label="Area" rules={[{required: true}]}>
                 <TreeSelect
                     showSearch
-                    dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                    dropdownStyle={{maxHeight: 400, overflow: 'auto'}}
                     placeholder="Please select"
                     allowClear
                     treeDefaultExpandAll

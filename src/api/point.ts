@@ -1,9 +1,10 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import {IPoint, IPointCreateRequest, IPointState, IPointType} from "../view/point";
+import {IPoint, IPointCreateRequest, IPointState, IPointType, IPointUpdateRequest} from "../view/point";
 
 export const pointApi = createApi({
     reducerPath: 'easyPoint/point',
     baseQuery: fetchBaseQuery({
+        baseUrl: '/points',
         credentials: 'include'
     }),
     tagTypes: ['Points'],
@@ -11,14 +12,24 @@ export const pointApi = createApi({
     endpoints: build => ({
         searchPoints: build.query<IPoint[], void>({
             query: () => ({
-                url: '/point'
+                url: ''
             }),
             providesTags: ['Points']
         }),
         createPoint: build.mutation<IPoint, IPointCreateRequest>({
             query(body) {
                 return {
-                    url: `/point`,
+                    url: ``,
+                    method: 'POST',
+                    body,
+                }
+            },
+            invalidatesTags: [{type: 'Points'}]
+        }),
+        updatePoint: build.mutation<IPoint, IPointUpdateRequest>({
+            query(body) {
+                return {
+                    url: `/${body.id}`,
                     method: 'POST',
                     body,
                 }
@@ -28,8 +39,18 @@ export const pointApi = createApi({
         deletePoint: build.mutation<void, number>({
             query(pointId) {
                 return {
-                    url: `/point/${pointId}`,
-                    method: 'POST'
+                    url: `/${pointId}`,
+                    method: 'DELETE'
+                }
+            },
+            invalidatesTags: [{type: 'Points'}]
+        }),
+        savePointCsv: build.mutation<void, FormData>({
+            query(file) {
+                return {
+                    url: "/csv",
+                    method: 'POST',
+                    body: file
                 }
             },
             invalidatesTags: [{type: 'Points'}]
@@ -38,7 +59,7 @@ export const pointApi = createApi({
 });
 
 
-export const {useCreatePointMutation, useSearchPointsQuery, useDeletePointMutation} = pointApi;
+export const {useCreatePointMutation, useSearchPointsQuery, useDeletePointMutation, useSavePointCsvMutation, useUpdatePointMutation} = pointApi;
 
 
 export const pointTypeApi = createApi({
