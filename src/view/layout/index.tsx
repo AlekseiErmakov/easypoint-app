@@ -15,6 +15,7 @@ import PointPage from "../point";
 import TotalStationPage from "../tool/totalStation";
 import AreaStructureTypePage from "../structure/area/types";
 import AreaStructurePage from "../structure/area";
+import AdminStructureTypePage from "../structure/admin/types";
 
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -68,6 +69,7 @@ const structureMenuItem: ItemType = {
     label: 'Structure',
 
     children: [
+        {key: 'adminStructureTypes', label: <Link to={'/structure/admin-types'}>Admin structure types</Link>},
         {key: 'areaStructureTypes', label: <Link to={'/structure/area-types'}>Area structure types</Link>},
         {key: 'areaStructure', label: <Link to={'/structure/area'}>Area structure</Link>}
     ]
@@ -102,6 +104,7 @@ const MainLayout = () => {
                             <Route path="/points" element={<PointPage/>} />
                             <Route path="/tools/total-stations" element={<TotalStationPage/>}/>
                             <Route path="/structure/area-types" element={<AreaStructureTypePage/>}/>
+                            <Route path="/structure/admin-types" element={<AdminStructureTypePage/>}/>
                             <Route path="/structure/area" element={<AreaStructurePage/>}/>
                         </Routes>
                     </Content>

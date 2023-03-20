@@ -1,6 +1,6 @@
 import {FormInstance} from "antd/es/form/hooks/useForm";
 import {IPoint, IPointType} from "./index";
-import {Form, Input, Select, TreeSelect} from "antd";
+import {Form, Input, InputNumber, Select, TreeSelect} from "antd";
 import React, {useEffect} from "react";
 import {TreeAreaStructure} from "../structure/area";
 
@@ -25,7 +25,6 @@ export interface PointFormResult {
 const PointForm = (props: PointFormProps) => {
     const point = props.point;
     useEffect(() => {
-        console.log(point)
         props.form.setFieldsValue({...point, ...{pointTypeId: point?.pointType?.id}, ...{pointAreaId: point?.rootAreaId}});
     }, [props.point]);
     return (
@@ -65,21 +64,27 @@ const PointForm = (props: PointFormProps) => {
                 name="x"
                 rules={[{required: true, message: 'Please input x coordinate!'}]}
             >
-                <Input/>
+                <InputNumber style={{
+                    width: 340,
+                }} stringMode/>
             </Form.Item>
             <Form.Item
                 label="Y coordinate"
                 name="y"
                 rules={[{required: true, message: 'Please input y coordinate!'}]}
             >
-                <Input/>
+                <InputNumber style={{
+                    width: 340,
+                }} stringMode/>
             </Form.Item>
             <Form.Item
                 label="H coordinate"
                 name="h"
                 rules={[{required: true, message: 'Please input h coordinate!'}]}
             >
-                <Input/>
+                <InputNumber style={{
+                    width: 340,
+                }} stringMode/>
             </Form.Item>
         </Form>
     )

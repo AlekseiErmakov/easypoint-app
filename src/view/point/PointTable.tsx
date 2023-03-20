@@ -94,7 +94,7 @@ const PointTable = (props: PointTableProps) => {
         },
         {
             title: 'Update',
-            width: 80,
+            width: 90,
             render: (_, point) => {
                 return point.pointState.code === PointStates.CREATED ?
                     <div onClick={_ => props.showUpdateModel(point)}><EditOutlined/></div> : <></>
