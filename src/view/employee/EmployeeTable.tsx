@@ -1,49 +1,49 @@
-import {getMoment, toDateString} from "../../hooks";
-import {ColumnsType} from "antd/es/table";
-import {Table} from "antd";
-import React, {CSSProperties} from "react";
-import {IEmployee} from "./index";
-
+import { toDateString } from '../../hooks'
+import { type ColumnsType } from 'antd/es/table'
+import { Table } from 'antd'
+import React from 'react'
+import { type IEmployee } from './index'
+import {jsx} from '@emotion/react';
+import JSX = jsx.JSX;
 
 const columns: ColumnsType<IEmployee> = [
-    {
-        title: 'Firstname',
-        dataIndex: 'firstname',
-        key: 'firstname'
-    },
-    {
-        title: 'Surname',
-        dataIndex: 'surname',
-        key: 'surname',
-    },
-    {
-        title: 'Patronymic',
-        dataIndex: 'lastname',
-        key: 'lastname',
-    },
-    {
-        title: 'Created',
-        dataIndex: 'created',
-        key: 'creates',
-        render: (value) => <span>{toDateString(value)}</span>
-    },
-    {
-        title: 'Updated',
-        dataIndex: 'updated',
-        key: 'updated',
-        render: (value) => <span>{toDateString(value)}</span>
-    }
-];
-
+  {
+    title: 'Firstname',
+    dataIndex: 'firstname',
+    key: 'firstname'
+  },
+  {
+    title: 'Surname',
+    dataIndex: 'surname',
+    key: 'surname'
+  },
+  {
+    title: 'Patronymic',
+    dataIndex: 'lastname',
+    key: 'lastname'
+  },
+  {
+    title: 'Created',
+    dataIndex: 'created',
+    key: 'creates',
+    render: (value) => <span>{toDateString(value)}</span>
+  },
+  {
+    title: 'Updated',
+    dataIndex: 'updated',
+    key: 'updated',
+    render: (value) => <span>{toDateString(value)}</span>
+  }
+]
 
 export interface EmployeeTableProps {
-    employees: IEmployee[]
+  employees: IEmployee[]
 }
 
-const EmployeeTable = (props: EmployeeTableProps) => {
-    return <>
-        {<Table columns={columns} dataSource={props.employees} rowKey={(it)=> (it.id)} />}
-    </>
+const EmployeeTable = (props: EmployeeTableProps): JSX.Element => {
+  return <>
+    {<Table columns={columns} dataSource={props.employees} rowKey={(it) => (it.id)}/>}
+  </>
 }
 
-export default EmployeeTable;
+export default EmployeeTable

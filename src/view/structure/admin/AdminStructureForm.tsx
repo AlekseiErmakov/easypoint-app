@@ -1,48 +1,47 @@
-import {FormInstance} from "antd/es/form/hooks/useForm";
-import {Form, Input, Select} from "antd";
-import React from "react";
-import {IAdminStructureType} from "./types";
-import {AdminStructureCreateRequest, IAdmin} from "./index";
+import { type FormInstance } from 'antd/es/form/hooks/useForm'
+import { Form, Input, Select } from 'antd'
+import React from 'react'
+import { type IAdminStructureType } from './types'
+import { type AdminStructureCreateRequest, type IAdmin } from './index'
 
 interface AdminStructureTypeProps {
-    form: FormInstance;
+  form: FormInstance
 
-    areas: IAdmin[];
-    adminStructureTypes: IAdminStructureType[];
+  areas: IAdmin[]
+  adminStructureTypes: IAdminStructureType[]
 
-    onFinish: (adminStructure: AdminStructureCreateRequest) => void;
+  onFinish: (adminStructure: AdminStructureCreateRequest) => void
 }
 
-
-export const AdminStructureForm = (props: AdminStructureTypeProps) => {
-    return <>
-        <Form
-            form={props.form}
-            name="basic"
-            labelCol={{span: 10}}
-            wrapperCol={{span: 14}}
-            initialValues={{remember: true}}
-            onFinish={props.onFinish}
-            autoComplete="off"
-        >
-            <Form.Item name="adminStructureTypeId" label="Admin structure type" rules={[{required: true}]}
-                       initialValue={undefined}>
-                <Select options={props.adminStructureTypes.map(it => ({label: it.name, value: it.id}))}/>
-            </Form.Item>
-            <Form.Item name="parentId" label="Admin structure parent"
-                       initialValue={undefined}>
-                <Select options={props.areas.map(it => ({label: it.name, value: it.id}))}/>
-            </Form.Item>
-            <Form.Item label="Name" name="name"
-                       rules={[{required: true, message: 'Please input admin structure type name!'}]}
-            >
-                <Input/>
-            </Form.Item>
-            <Form.Item label="Description" name="description"
-                       rules={[{required: true, message: 'Please input admin structure type description!'}]}
-            >
-                <Input/>
-            </Form.Item>
-        </Form>
-    </>
+export const AdminStructureForm = (props: AdminStructureTypeProps): JSX.Element => {
+  return <>
+    <Form
+      form={props.form}
+      name="basic"
+      labelCol={{ span: 10 }}
+      wrapperCol={{ span: 14 }}
+      initialValues={{ remember: true }}
+      onFinish={props.onFinish}
+      autoComplete="off"
+    >
+      <Form.Item name="adminStructureTypeId" label="Admin structure type" rules={[{ required: true }]}
+                 initialValue={undefined}>
+        <Select options={props.adminStructureTypes.map(it => ({ label: it.name, value: it.id }))}/>
+      </Form.Item>
+      <Form.Item name="parentId" label="Admin structure parent"
+                 initialValue={undefined}>
+        <Select options={props.areas.map(it => ({ label: it.name, value: it.id }))}/>
+      </Form.Item>
+      <Form.Item label="Name" name="name"
+                 rules={[{ required: true, message: 'Please input admin structure type name!' }]}
+      >
+        <Input/>
+      </Form.Item>
+      <Form.Item label="Description" name="description"
+                 rules={[{ required: true, message: 'Please input admin structure type description!' }]}
+      >
+        <Input/>
+      </Form.Item>
+    </Form>
+  </>
 }

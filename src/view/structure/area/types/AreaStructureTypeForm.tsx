@@ -1,42 +1,41 @@
-import {FormInstance} from "antd/es/form/hooks/useForm";
-import {AreaStructureTypeCreateRequest} from "./index";
-import {Form, Input, Select} from "antd";
-import React from "react";
-
+import { type FormInstance } from 'antd/es/form/hooks/useForm'
+import { type AreaStructureTypeCreateRequest } from './index'
+import { Form, Input } from 'antd'
+import React from 'react'
 
 interface AreaStructureTypeProps {
-    form: FormInstance;
+  form: FormInstance
 
-    onFinish: (areaStructure: AreaStructureTypeCreateRequest) => void;
+  onFinish: (areaStructure: AreaStructureTypeCreateRequest) => void
 }
 
-const AreaStructureTypeForm = (props: AreaStructureTypeProps) => {
-    return <>
-        <Form
-            form={props.form}
-            name="basic"
-            labelCol={{span: 6}}
-            wrapperCol={{span: 18}}
-            initialValues={{remember: true}}
-            onFinish={props.onFinish}
-            autoComplete="off"
-        >
-            <Form.Item
-                label="Name"
-                name="name"
-                rules={[{required: true, message: 'Please input area structure type name!'}]}
-            >
-                <Input/>
-            </Form.Item>
-            <Form.Item
-                label="Description"
-                name="description"
-                rules={[{required: true, message: 'Please input area structure type description!'}]}
-            >
-                <Input/>
-            </Form.Item>
-        </Form>
-    </>
+const AreaStructureTypeForm = (props: AreaStructureTypeProps): JSX.Element => {
+  return <>
+    <Form
+      form={props.form}
+      name="basic"
+      labelCol={{ span: 6 }}
+      wrapperCol={{ span: 18 }}
+      initialValues={{ remember: true }}
+      onFinish={props.onFinish}
+      autoComplete="off"
+    >
+      <Form.Item
+        label="Name"
+        name="name"
+        rules={[{ required: true, message: 'Please input area structure type name!' }]}
+      >
+        <Input/>
+      </Form.Item>
+      <Form.Item
+        label="Description"
+        name="description"
+        rules={[{ required: true, message: 'Please input area structure type description!' }]}
+      >
+        <Input/>
+      </Form.Item>
+    </Form>
+  </>
 }
 
-export default AreaStructureTypeForm;
+export default AreaStructureTypeForm

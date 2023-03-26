@@ -1,9 +1,10 @@
-import Moment from 'moment';
-Moment().locale('en');
+import Moment from 'moment'
+
+Moment().locale('en')
 export const getMoment = (format: string) => {
-    return (date: Date): string => {
-        return date ? Moment(date).format(format) : 'Missing';
-    }
+  return (date: Date): string => {
+    return date === undefined ? Moment(date).format(format) : 'Missing'
+  }
 }
 
-export const toDateString: (date: Date) => string = getMoment('YYYY-MM-DD');
+export const toDateString: (date: Date) => string = getMoment('YYYY-MM-DD')
