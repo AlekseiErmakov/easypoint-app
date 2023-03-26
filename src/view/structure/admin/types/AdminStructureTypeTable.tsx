@@ -1,6 +1,7 @@
 import { type ColumnsType } from 'antd/es/table'
 import { Table } from 'antd'
 import { type IAdminStructureType } from './index'
+import React from 'react'
 
 const columns: ColumnsType<IAdminStructureType> = [
   {
