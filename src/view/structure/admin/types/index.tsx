@@ -9,23 +9,23 @@ import {
   useSearchAdminStructureTypeQuery
 } from '../../../../api/adminStructureType'
 
-export interface IAdminStructureType {
+export interface IAdministrativeUnitType {
   id: number
   name: string
   description: string
 }
 
-export interface AdminStructureTypeCreateRequest {
+export interface AdministrativeUnitTypeCreateRequest {
   name: string
   description: string
 }
 
-const AdminStructureTypePage = () => {
+const AdminStructureTypePage = (): JSX.Element => {
   const { data } = useSearchAdminStructureTypeQuery()
   const [showAddModal, setShowAddModal] = useState(false)
   const [addAdminStructureType] = useCreateAdminStructureTypeMutation()
   const [form] = Form.useForm()
-  const showModal = () => {
+  const showModal = (): void => {
     setShowAddModal(true)
   }
 
@@ -33,8 +33,8 @@ const AdminStructureTypePage = () => {
     setShowAddModal(false)
   }
 
-  const handleOk = (adminStructureTypeCreateRequest: AdminStructureTypeCreateRequest): void => {
-    addAdminStructureType(adminStructureTypeCreateRequest)
+  const handleOk = (AdministrativeUnitTypeCreateRequest: AdministrativeUnitTypeCreateRequest): void => {
+    void addAdminStructureType(AdministrativeUnitTypeCreateRequest)
     form.resetFields()
     setShowAddModal(false)
   }

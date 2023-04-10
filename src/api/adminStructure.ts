@@ -1,47 +1,50 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
-import { toTreeNode } from './trenode'
-import { type IAdmin, type IAdminStructure, type TreeAdminStructure } from '../view/structure/admin'
-import { type AdminStructureTypeCreateRequest } from '../view/structure/admin/types'
+import { toAdministrativeUnitTree } from './trenode'
+import {
+  type IAdministrativeUnit,
+  type AdministrativeUnitTree,
+  type ISimpleAdministrativeUnit, AdministrativeUnitCreateRequest
+} from '../view/structure/admin'
 
-export const adminStructureApi = createApi({
-  reducerPath: 'easyPoint/adminStructure',
+export const administrativeUnitApi = createApi({
+  reducerPath: 'easyPoint/administrativeUnit',
   refetchOnFocus: true,
-  tagTypes: ['ADMIN_STRUCTURE'],
+  tagTypes: ['ADMINISTRATIVE_UNIT'],
   baseQuery: fetchBaseQuery({
-    baseUrl: '/admin',
+    baseUrl: '/administrative-units',
     credentials: 'include'
   }),
   endpoints: build => ({
-    searchAdminStructure: build.query<TreeAdminStructure[], void>({
+    searchAdministrativeUnitTree: build.query<AdministrativeUnitTree[], void>({
       query: () => ({
         url: '/structure',
         method: 'GET'
       }),
-      transformResponse: (response: IAdminStructure[]): TreeAdminStructure[] => {
-        return response.map(it => toTreeNode(it))
+      transformResponse: (response: IAdministrativeUnit[]): AdministrativeUnitTree[] => {
+        return response.map(it => toAdministrativeUnitTree(it))
       },
-      providesTags: ['ADMIN_STRUCTURE']
+      providesTags: ['ADMINISTRATIVE_UNIT']
     }),
-    searchAdmins: build.query<IAdmin[], void>({
+    searchAdministrativeUnits: build.query<ISimpleAdministrativeUnit[], void>({
       query: () => ({
         url: '',
         method: 'GET'
       }),
-      providesTags: ['ADMIN_STRUCTURE']
+      providesTags: ['ADMINISTRATIVE_UNIT']
     }),
-    createAdminStructure: build.mutation<void, AdminStructureTypeCreateRequest>({
+    createAdministrativeUnit: build.mutation<void, AdministrativeUnitCreateRequest>({
       query: (body) => ({
         url: '',
         method: 'POST',
         body
       }),
-      invalidatesTags: ['ADMIN_STRUCTURE']
+      invalidatesTags: ['ADMINISTRATIVE_UNIT']
     })
   })
 })
 
 export const {
-  useSearchAdminStructureQuery,
-  useSearchAdminsQuery,
-  useCreateAdminStructureMutation
-} = adminStructureApi
+  useSearchAdministrativeUnitTreeQuery,
+  useSearchAdministrativeUnitsQuery,
+  useCreateAdministrativeUnitMutation
+} = administrativeUnitApi

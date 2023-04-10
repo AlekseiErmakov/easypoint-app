@@ -1,53 +1,53 @@
 import { Col, Form, Modal, Row, Tree, type TreeDataNode } from 'antd'
-import { type IAdminStructureType } from './types'
+import { type IAdministrativeUnitType } from './types'
 import React, { useState } from 'react'
 import EpButton from '../../../components/Button'
 import { PlusOutlined } from '@ant-design/icons'
 import {
-  useCreateAdminStructureMutation,
-  useSearchAdminsQuery,
-  useSearchAdminStructureQuery
+  useCreateAdministrativeUnitMutation,
+  useSearchAdministrativeUnitsQuery,
+  useSearchAdministrativeUnitTreeQuery
 } from '../../../api/adminStructure'
 import { useSearchAdminStructureTypeQuery } from '../../../api/adminStructureType'
 import { AdminStructureForm } from './AdminStructureForm'
 
-export interface IAdminStructure {
+export interface IAdministrativeUnit {
   id: number
   name: string
   description: string
-  parent?: IAdminStructure
-  children: IAdminStructure[]
-  areaStructureType: IAdminStructureType
+  parent?: IAdministrativeUnit
+  children: IAdministrativeUnit[]
+  administrativeUnitType: IAdministrativeUnitType
 }
 
-export interface TreeAdminStructure extends TreeDataNode {
+export interface AdministrativeUnitTree extends TreeDataNode {
   value: number
   description: string
   label: string
-  parent?: IAdminStructure
-  areaStructureType: IAdminStructureType
+  parent?: IAdministrativeUnit
+  administrativeUnitType: IAdministrativeUnitType
 }
 
-export interface AdminStructureCreateRequest {
+export interface AdministrativeUnitCreateRequest {
   name: string
   description: string
-  areaStructureTypeId?: number
+  administrativeUnitType?: number
   parentId?: number
 }
 
-export interface IAdmin {
+export interface ISimpleAdministrativeUnit {
   id: number
   name: string
   description: string
-  areaStructureType: IAdminStructureType
+  administrativeUnitType: IAdministrativeUnitType
 }
 
 const AdminStructurePage = (): JSX.Element => {
   const [showAddModal, setShowAddModal] = useState(false)
-  const { data } = useSearchAdminStructureQuery()
-  const [createAdminStructure] = useCreateAdminStructureMutation()
-  const admins = useSearchAdminsQuery()
-  const adminStructureTypes = useSearchAdminStructureTypeQuery()
+  const { data } = useSearchAdministrativeUnitTreeQuery()
+  const [createAdministrativeUnit] = useCreateAdministrativeUnitMutation()
+  const administrativeUnits = useSearchAdministrativeUnitsQuery()
+  const administrativeUnitTypes = useSearchAdminStructureTypeQuery()
 
   const [form] = Form.useForm()
   const showModal = (): void => {
@@ -58,12 +58,12 @@ const AdminStructurePage = (): JSX.Element => {
     setShowAddModal(false)
   }
 
-  const handleOk = (adminStructure: AdminStructureCreateRequest): void => {
-    console.log(adminStructure)
-    createAdminStructure(adminStructure)
+  const handleOk = (adminStructure: AdministrativeUnitCreateRequest): void => {
+    void createAdministrativeUnit(adminStructure)
     form.resetFields()
     setShowAddModal(false)
   }
+
   return <div>
     <Row>
       <Col flex={2}><Tree
@@ -75,8 +75,8 @@ const AdminStructurePage = (): JSX.Element => {
       <Col flex={3}><EpButton onClick={showModal} icon={<PlusOutlined/>}/></Col>
     </Row>
     <Modal title="Add admin" open={showAddModal} onOk={form.submit} onCancel={handleCancel} width={500}>
-      <AdminStructureForm onFinish={handleOk} form={form} areas={(admins.data != null) ? admins.data : []}
-                          adminStructureTypes={(adminStructureTypes.data != null) ? adminStructureTypes.data : []}/>
+      <AdminStructureForm onFinish={handleOk} form={form} administrativeUnits={(administrativeUnits.data != null) ? administrativeUnits.data : []}
+                          administrativeUnitTypes={(administrativeUnitTypes.data != null) ? administrativeUnitTypes.data : []}/>
     </Modal>
   </div>
 }

@@ -2,12 +2,12 @@ import { Form, Input, Select } from 'antd'
 import React from 'react'
 import { type EmployeeCreateRequest } from './index'
 import { type FormInstance } from 'antd/es/form/hooks/useForm'
-import { type IAdmin } from '../structure/admin'
+import { type ISimpleAdministrativeUnit } from '../structure/admin'
 
 interface EmployeeFormProps {
   onFinish: (employee: EmployeeCreateRequest) => void
   form: FormInstance
-  adminStructures: IAdmin[]
+  administrativeUnits: ISimpleAdministrativeUnit[]
 }
 
 const EmployeeForm = (props: EmployeeFormProps): JSX.Element => {
@@ -54,7 +54,7 @@ const EmployeeForm = (props: EmployeeFormProps): JSX.Element => {
             style={{ width: '100%' }}
             placeholder="Please select"
             defaultValue={[]}
-            options={props.adminStructures.map(it => ({ label: it.name, value: it.id }))}
+            options={props.administrativeUnits.map(it => ({ label: it.name, value: it.id }))}
           />
         </Form.Item>
       </Form>

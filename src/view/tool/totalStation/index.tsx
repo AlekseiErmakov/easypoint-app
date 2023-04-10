@@ -32,8 +32,8 @@ const TotalStationPage = (): JSX.Element => {
     setShowAddModal(false)
   }
 
-  const handleOk = (point: TotalStationCreateRequest) => {
-    addTotalStation(point)
+  const handleOk = (totalStation: TotalStationCreateRequest): void => {
+    void addTotalStation(totalStation)
     form.resetFields()
     setShowAddModal(false)
   }

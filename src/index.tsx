@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import MainPage from './MainPage'
 import { BrowserRouter } from 'react-router-dom'
-import { configureStore } from '@reduxjs/toolkit'
+import {configureStore, isRejectedWithValue, Middleware, MiddlewareAPI} from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import { authReducer } from './view/login/reducer'
 import { employeeApi } from './api/employee'
@@ -11,7 +11,7 @@ import { totalStationApi } from './api/totalStation'
 import { areaStructureApi } from './api/areaStructure'
 import { areaStructureTypeApi } from './api/areaStructureType'
 import { adminStructureTypeApi } from './api/adminStructureType'
-import { adminStructureApi } from './api/adminStructure'
+import { administrativeUnitApi } from './api/adminStructure'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -27,13 +27,12 @@ export const store = configureStore({
     [areaStructureApi.reducerPath]: areaStructureApi.reducer,
     [areaStructureTypeApi.reducerPath]: areaStructureTypeApi.reducer,
     [adminStructureTypeApi.reducerPath]: adminStructureTypeApi.reducer,
-    [adminStructureApi.reducerPath]: adminStructureApi.reducer
+    [administrativeUnitApi.reducerPath]: administrativeUnitApi.reducer
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(employeeApi.middleware, pointApi.middleware,
     pointTypeApi.middleware, totalStationApi.middleware, areaStructureApi.middleware, areaStructureTypeApi.middleware,
-    adminStructureTypeApi.middleware, adminStructureApi.middleware)
+    adminStructureTypeApi.middleware, administrativeUnitApi.middleware)
 })
-
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
@@ -53,4 +52,3 @@ const App = (): JSX.Element => {
 root.render(
   <App/>
 )
-

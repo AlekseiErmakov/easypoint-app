@@ -1,29 +1,29 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
-import { type AdminStructureTypeCreateRequest, type IAdminStructureType } from '../view/structure/admin/types'
+import { type AdministrativeUnitTypeCreateRequest, type IAdministrativeUnitType } from '../view/structure/admin/types'
 
 export const adminStructureTypeApi = createApi({
   reducerPath: 'easyPoint/adminStructureType',
   refetchOnFocus: true,
-  tagTypes: ['ADMIN_STRUCTURE_TYPE'],
+  tagTypes: ['ADMINISTRATIVE_UNIT_TYPE'],
   baseQuery: fetchBaseQuery({
-    baseUrl: '/admin-structure-types',
+    baseUrl: '/administrative-unit-types',
     credentials: 'include'
   }),
   endpoints: build => ({
-    searchAdminStructureType: build.query<IAdminStructureType[], void>({
+    searchAdminStructureType: build.query<IAdministrativeUnitType[], void>({
       query: () => ({
         url: '',
         method: 'GET'
       }),
-      providesTags: ['ADMIN_STRUCTURE_TYPE']
+      providesTags: ['ADMINISTRATIVE_UNIT_TYPE']
     }),
-    createAdminStructureType: build.mutation<void, AdminStructureTypeCreateRequest>({
+    createAdminStructureType: build.mutation<void, AdministrativeUnitTypeCreateRequest>({
       query: (body) => ({
         url: '',
         method: 'POST',
         body
       }),
-      invalidatesTags: ['ADMIN_STRUCTURE_TYPE']
+      invalidatesTags: ['ADMINISTRATIVE_UNIT_TYPE']
     })
   })
 })

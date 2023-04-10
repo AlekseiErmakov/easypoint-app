@@ -5,10 +5,9 @@ import MainLayout from './view/layout'
 
 export default function MainPage (): JSX.Element {
   const [cookies] = useCookies(['Authorization'])
-  console.log(cookies.Authorization)
   return (
     <div>
-      {cookies.Authorization === undefined ? <MainLayout/> : <LoginForm/>}
+      {cookies.Authorization !== undefined && cookies.Authorization !== null ? <MainLayout/> : <LoginForm/>}
     </div>
   )
 }

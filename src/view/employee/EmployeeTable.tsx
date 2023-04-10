@@ -1,12 +1,31 @@
 import { toDateString } from '../../hooks'
 import { type ColumnsType } from 'antd/es/table'
-import { Table } from 'antd'
+import { Table, Tag } from 'antd'
 import React from 'react'
 import { type IEmployee } from './index'
-import {jsx} from '@emotion/react';
-import JSX = jsx.JSX;
+import { jsx } from '@emotion/react'
+import JSX = jsx.JSX
 
 const columns: ColumnsType<IEmployee> = [
+  {
+    title: 'Place in company',
+    dataIndex: 'adminStructures',
+    key: 'adminStructures',
+    width: 100,
+    render: (_, { administrativeUnits }) => (
+      <>
+        {administrativeUnits.map((administrativeUnit) => {
+          return (
+            <div key={administrativeUnit.id}>
+              <Tag color={'blue'} key={administrativeUnit.name}>
+                {administrativeUnit.name.toUpperCase()}
+              </Tag>
+            </div>
+          )
+        })}
+      </>
+    )
+  },
   {
     title: 'Firstname',
     dataIndex: 'firstname',

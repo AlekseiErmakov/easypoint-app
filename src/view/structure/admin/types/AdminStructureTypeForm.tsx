@@ -1,12 +1,12 @@
 import { type FormInstance } from 'antd/es/form/hooks/useForm'
 import { Form, Input } from 'antd'
 import React from 'react'
-import { type AdminStructureTypeCreateRequest } from './index'
+import { type AdministrativeUnitTypeCreateRequest } from './index'
 
 interface AdminStructureTypeProps {
   form: FormInstance
 
-  onFinish: (areaStructure: AdminStructureTypeCreateRequest) => void
+  onFinish: (areaStructure: AdministrativeUnitTypeCreateRequest) => void
 }
 
 const AdminStructureTypeForm = (props: AdminStructureTypeProps): JSX.Element => {

@@ -1,16 +1,16 @@
 import { type FormInstance } from 'antd/es/form/hooks/useForm'
 import { Form, Input, Select } from 'antd'
 import React from 'react'
-import { type IAdminStructureType } from './types'
-import { type AdminStructureCreateRequest, type IAdmin } from './index'
+import { type IAdministrativeUnitType } from './types'
+import {type AdministrativeUnitCreateRequest, type IAdministrativeUnit, ISimpleAdministrativeUnit} from './index'
 
 interface AdminStructureTypeProps {
   form: FormInstance
 
-  areas: IAdmin[]
-  adminStructureTypes: IAdminStructureType[]
+  administrativeUnits: ISimpleAdministrativeUnit[]
+  administrativeUnitTypes: IAdministrativeUnitType[]
 
-  onFinish: (adminStructure: AdminStructureCreateRequest) => void
+  onFinish: (adminStructure: AdministrativeUnitCreateRequest) => void
 }
 
 export const AdminStructureForm = (props: AdminStructureTypeProps): JSX.Element => {
@@ -26,11 +26,11 @@ export const AdminStructureForm = (props: AdminStructureTypeProps): JSX.Element 
     >
       <Form.Item name="adminStructureTypeId" label="Admin structure type" rules={[{ required: true }]}
                  initialValue={undefined}>
-        <Select options={props.adminStructureTypes.map(it => ({ label: it.name, value: it.id }))}/>
+        <Select options={props.administrativeUnitTypes.map(it => ({ label: it.name, value: it.id }))}/>
       </Form.Item>
       <Form.Item name="parentId" label="Admin structure parent"
                  initialValue={undefined}>
-        <Select options={props.areas.map(it => ({ label: it.name, value: it.id }))}/>
+        <Select options={props.administrativeUnits.map(it => ({ label: it.name, value: it.id }))}/>
       </Form.Item>
       <Form.Item label="Name" name="name"
                  rules={[{ required: true, message: 'Please input admin structure type name!' }]}

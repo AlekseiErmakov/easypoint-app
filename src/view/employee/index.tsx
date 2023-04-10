@@ -5,17 +5,17 @@ import EmployeeTable from './EmployeeTable'
 import { UserAddOutlined } from '@ant-design/icons'
 import EmployeeForm from './EmployeeForm'
 import EpButton from '../../components/Button'
-import { type IAdminStructure } from '../structure/admin'
-import { useSearchAdminsQuery } from '../../api/adminStructure'
-import {jsx} from '@emotion/react';
-import JSX = jsx.JSX;
+import { type IAdministrativeUnit } from '../structure/admin'
+import { jsx } from '@emotion/react'
+import JSX = jsx.JSX
+import {useSearchAdministrativeUnitsQuery} from '../../api/adminStructure';
 
 export interface IEmployee {
   id: number
   firstname: string
   surname: string
   lastname: string
-  adminStructures: IAdminStructure[]
+  administrativeUnits: IAdministrativeUnit[]
   created?: Date
   updated?: Date
 }
@@ -29,17 +29,17 @@ export interface EmployeeCreateRequest {
 }
 
 const EmployeePage = (): JSX.Element => {
-  const admins = useSearchAdminsQuery()
+  const administrativeUnits = useSearchAdministrativeUnitsQuery()
   const { data, isLoading } = useSearchEmployeesQuery()
   const [addEmployee] = useCreateEmployeeMutation()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [form] = Form.useForm()
-  const showModal = () => {
+  const showModal = (): void => {
     setIsModalOpen(true)
   }
 
-  const handleOk = (employee: EmployeeCreateRequest) => {
-    addEmployee(employee)
+  const handleOk = (employee: EmployeeCreateRequest): void => {
+    void addEmployee(employee)
     form.resetFields()
     setIsModalOpen(false)
   }
@@ -51,7 +51,7 @@ const EmployeePage = (): JSX.Element => {
     <EpButton onClick={showModal} icon={<UserAddOutlined/>}/>
     {isLoading ? <h1>Loading</h1> : <EmployeeTable employees={(data != null) ? data : []}/>}
     <Modal title="Basic Modal" open={isModalOpen} onOk={form.submit} onCancel={handleCancel}>
-      <EmployeeForm onFinish={handleOk} form={form} adminStructures={(admins.data != null) ? admins.data : []}/>
+      <EmployeeForm onFinish={handleOk} form={form} administrativeUnits={(administrativeUnits.data != null) ? administrativeUnits.data : []}/>
     </Modal>
   </>
 }

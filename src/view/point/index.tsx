@@ -16,8 +16,8 @@ import { useSearchAreaStructureQuery } from '../../api/areaStructure'
 import { type IArea } from '../structure/area'
 import EpButton from '../../components/Button'
 import { downLoadFile } from '../../api/download'
-import {jsx} from '@emotion/react';
-import JSX = jsx.JSX;
+import { jsx } from '@emotion/react'
+import JSX = jsx.JSX
 
 export enum PointTypes {
   REFERENCE_POINT, WALL_MARK, FIXED_POINT
@@ -92,59 +92,58 @@ const PointPage = (): JSX.Element => {
   const [pointForDelete, setPointForDelete] = useState<IPoint | undefined>(undefined)
   const [form] = Form.useForm()
 
-  const showModal = () => {
+  const showModal = (): void => {
     setIsModalOpen(true)
   }
 
-  const downLoadPoints = () => {
+  const downLoadPoints = (): void => {
     downLoadFile({ url: '/points/csv' })
   }
 
-  const showDeleteModal = (point: IPoint) => {
+  const showDeleteModal = (point: IPoint): void => {
     setPointForDelete(point)
   }
 
-  const showUpdateModal = (point: IPoint) => {
+  const showUpdateModal = (point: IPoint): void => {
     console.log(point)
     setUpdatedPoint(point)
   }
 
-  const handleSave = (point: PointFormResult) => {
+  const handleSave = (point: PointFormResult): void => {
     console.log(point)
     addPoint({ ...point })
     form.resetFields()
     setIsModalOpen(false)
   }
 
-  const handleUpdate = (point: PointFormResult) => {
-    console.log(point)
-    updatePoint({ ...point, ...{ id: updatedPoint!.id } })
+  const handleUpdate = (point: PointFormResult): void => {
+    void updatePoint({ ...point, ...{ id: updatedPoint!.id } })
     form.resetFields()
     setUpdatedPoint(undefined)
   }
 
-  const handleCancel = () => {
+  const handleCancel = (): void => {
     setIsModalOpen(false)
   }
 
-  const handleUpdateCancel = () => {
+  const handleUpdateCancel = (): void => {
     setUpdatedPoint(undefined)
   }
 
-  const handleDeleteCancel = () => {
+  const handleDeleteCancel = (): void => {
     setPointForDelete(undefined)
   }
 
-  const handleDelete = () => {
-    deletePoint(pointForDelete?.id!)
+  const handleDelete = (): void => {
+    void deletePoint(pointForDelete?.id!)
     setPointForDelete(undefined)
   }
 
-  const uploadPointsInCsv = async (options: any) => {
+  const uploadPointsInCsv = (options: any): void => {
     const { onSuccess, onError, file } = options
     const fmData = new FormData()
     fmData.append('file', file)
-    savePoints(fmData)
+    void savePoints(fmData)
   }
 
   return <div>
@@ -155,7 +154,8 @@ const PointPage = (): JSX.Element => {
     <EpButton icon={<CloudDownloadOutlined/>} onClick={downLoadPoints}/>
     {isLoading
       ? <h1>Loading</h1>
-      : <PointTable points={(data != null) ? data : []} showDeleteModal={showDeleteModal} showUpdateModel={showUpdateModal}/>}
+      : <PointTable points={(data != null) ? data : []} showDeleteModal={showDeleteModal}
+                    showUpdateModel={showUpdateModal}/>}
     <Modal title="Add point" open={isModalOpen} onOk={form.submit} onCancel={handleCancel} width={500}>
       <PointForm onFinish={handleSave} form={form} pointTypes={(pointTypes.data != null) ? pointTypes.data : []}
                  areaStructure={(areas.data != null) ? areas.data : []}/>
