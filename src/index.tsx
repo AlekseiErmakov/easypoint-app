@@ -12,6 +12,7 @@ import { areaStructureApi } from './api/areaStructure'
 import { areaStructureTypeApi } from './api/areaStructureType'
 import { adminStructureTypeApi } from './api/adminStructureType'
 import { administrativeUnitApi } from './api/adminStructure'
+import {rtkQueryErrorLogger} from './api/useApi';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -31,7 +32,7 @@ export const store = configureStore({
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(employeeApi.middleware, pointApi.middleware,
     pointTypeApi.middleware, totalStationApi.middleware, areaStructureApi.middleware, areaStructureTypeApi.middleware,
-    adminStructureTypeApi.middleware, administrativeUnitApi.middleware)
+    adminStructureTypeApi.middleware, administrativeUnitApi.middleware, rtkQueryErrorLogger)
 })
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

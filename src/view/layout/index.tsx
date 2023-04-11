@@ -1,17 +1,14 @@
-import { Layout, Menu, type MenuProps, theme } from 'antd'
+import { Layout, Menu, theme } from 'antd'
 import React from 'react'
 import {
   BorderOuterOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
   PartitionOutlined,
   TeamOutlined,
-  ToolOutlined,
-  UserOutlined
+  ToolOutlined
 } from '@ant-design/icons'
 import { type ItemType } from 'antd/es/menu/hooks/useItems'
 import EmployeePage from '../employee'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Navigate, Route, Routes } from 'react-router-dom'
 import PointPage from '../point'
 import TotalStationPage from '../tool/totalStation'
 import AreaStructureTypePage from '../structure/area/types'
@@ -59,7 +56,7 @@ const structureMenuItem: ItemType = {
 }
 
 const menuItems = [employeeMenuItem, pointMenuItem, toolMenuItem, structureMenuItem]
-const MainLayout = () => {
+const MainLayout: React.FC = () => {
   const {
     token: { colorBgContainer }
   } = theme.useToken()
@@ -90,6 +87,10 @@ const MainLayout = () => {
               <Route path="/structure/admin-types" element={<AdminStructureTypePage/>}/>
               <Route path="/structure/area" element={<AreaStructurePage/>}/>
               <Route path="/structure/admin" element={<AdminStructurePage/>}/>
+              <Route
+                path="*"
+                element={<Navigate to="/employees" replace />}
+              />
             </Routes>
           </Content>
         </Layout>

@@ -1,8 +1,9 @@
-import React, { type CSSProperties } from 'react'
+import React, { type CSSProperties, useEffect } from 'react'
 import { Button, Card, Checkbox, Form, Input } from 'antd'
 import axios from 'axios'
 import { type IUser, useActions } from './reducer'
 import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
 
 interface LoginPassword {
   username: string
@@ -24,17 +25,25 @@ const containerStyles: CSSProperties = {
 
 const LoginForm: React.FC = () => {
   const { authenticate } = useActions()
-  const [, setCookie] = useCookies()
+  const [cookies, setCookie] = useCookies(['Authorization'])
+  const navigate = useNavigate()
   const onFinish = (request: LoginPassword): void => {
-    axios.post<LoginPassword, IResponse>('/auth/authenticate', request)
+    void axios.post<LoginPassword, IResponse>('/auth/authenticate', request)
       .then(resp => {
         authenticate(resp.data)
         setCookie('Authorization', 'Bearer ' + resp.data.token)
+        navigate('/')
       })
   }
-  const onFinishFailed = (errorInfo: any) => {
+  const onFinishFailed = (errorInfo: any): void => {
     console.log('Failed:', errorInfo)
   }
+  useEffect(() => {
+    if (cookies.Authorization !== undefined) {
+      navigate('/')
+    }
+  }, [])
+
   return (<div style={containerStyles}>
       <Card style={{ width: 600 }}>
         <Form
