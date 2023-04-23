@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import MainPage from './MainPage'
 import { BrowserRouter } from 'react-router-dom'
-import {configureStore, isRejectedWithValue, Middleware, MiddlewareAPI} from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import { authReducer } from './view/login/reducer'
 import { employeeApi } from './api/employee'
@@ -12,7 +12,9 @@ import { areaStructureApi } from './api/areaStructure'
 import { areaStructureTypeApi } from './api/areaStructureType'
 import { adminStructureTypeApi } from './api/adminStructureType'
 import { administrativeUnitApi } from './api/adminStructure'
-import {rtkQueryErrorLogger} from './api/useApi';
+import { rtkQueryErrorLogger } from './api/useApi'
+import { competencyApi } from './api/competency'
+import {jobTitleApi} from './api/jobTitle';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -28,11 +30,14 @@ export const store = configureStore({
     [areaStructureApi.reducerPath]: areaStructureApi.reducer,
     [areaStructureTypeApi.reducerPath]: areaStructureTypeApi.reducer,
     [adminStructureTypeApi.reducerPath]: adminStructureTypeApi.reducer,
-    [administrativeUnitApi.reducerPath]: administrativeUnitApi.reducer
+    [administrativeUnitApi.reducerPath]: administrativeUnitApi.reducer,
+    [competencyApi.reducerPath]: competencyApi.reducer,
+    [jobTitleApi.reducerPath]: jobTitleApi.reducer
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(employeeApi.middleware, pointApi.middleware,
     pointTypeApi.middleware, totalStationApi.middleware, areaStructureApi.middleware, areaStructureTypeApi.middleware,
-    adminStructureTypeApi.middleware, administrativeUnitApi.middleware, rtkQueryErrorLogger)
+    adminStructureTypeApi.middleware, administrativeUnitApi.middleware, competencyApi.middleware, jobTitleApi.middleware,
+    rtkQueryErrorLogger)
 })
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

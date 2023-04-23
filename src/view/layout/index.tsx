@@ -15,6 +15,8 @@ import AreaStructureTypePage from '../structure/area/types'
 import AreaStructurePage from '../structure/area'
 import AdminStructureTypePage from '../structure/admin/types'
 import AdminStructurePage from '../structure/admin'
+import CompetencyPage from '../competency';
+import JobTitlePage from '../jobTitle';
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -23,7 +25,11 @@ const employeeMenuItem: ItemType = {
   icon: <TeamOutlined/>,
   label: 'Employees',
 
-  children: [{ key: 'employeeList', label: <Link to={'/employees'}>Employees</Link> }]
+  children: [
+    { key: 'employeeList', label: <Link to={'/employees'}>Employees</Link> },
+    { key: 'competencyList', label: <Link to={'/competencies'}>Competencies</Link> },
+    { key: 'jobTitleList', label: <Link to={'/jobTitles'}>Job titles</Link> }
+  ]
 }
 
 const pointMenuItem: ItemType = {
@@ -31,7 +37,9 @@ const pointMenuItem: ItemType = {
   icon: <BorderOuterOutlined/>,
   label: 'Horizontal and vertical control surveys',
 
-  children: [{ key: 'pointsList', label: <Link to={'/points'}>Points</Link> }]
+  children: [
+    { key: 'pointsList', label: <Link to={'/points'}>Points</Link> }
+  ]
 }
 
 const toolMenuItem: ItemType = {
@@ -81,6 +89,8 @@ const MainLayout: React.FC = () => {
           <Content style={{ minHeight: 280, paddingRight: 10, paddingTop: 10 }}>
             <Routes>
               <Route path="/employees" element={<EmployeePage/>}/>
+              <Route path="/competencies" element={<CompetencyPage/>}/>
+              <Route path="/jobTitles" element={<JobTitlePage/>}/>
               <Route path="/points" element={<PointPage/>}/>
               <Route path="/tools/total-stations" element={<TotalStationPage/>}/>
               <Route path="/structure/area-types" element={<AreaStructureTypePage/>}/>

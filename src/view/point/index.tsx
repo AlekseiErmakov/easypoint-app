@@ -105,7 +105,6 @@ const PointPage = (): JSX.Element => {
   }
 
   const showUpdateModal = (point: IPoint): void => {
-    console.log(point)
     setUpdatedPoint(point)
   }
 

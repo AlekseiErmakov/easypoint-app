@@ -35,18 +35,18 @@ const PointTable = (props: PointTableProps): JSX.Element => {
       title: 'Point type',
       dataIndex: 'pointType',
       key: 'pointType',
-      render: (value) => <Popover content={value !== undefined ? value.description : 'NONE'}
-                                  title={value !== undefined ? value.name : 'NONE'}>
-        <div>{value !== undefined ? value.name : 'NONE'}</div>
+      render: (value) => <Popover content={value ? value.description : 'NONE'}
+                                  title={value ? value.name : 'NONE'}>
+        <div>{value ? value.name : 'NONE'}</div>
       </Popover>
     },
     {
       title: 'Point state',
       dataIndex: 'pointState',
       key: 'pointState',
-      render: (value) => <Popover content={value !== undefined ? value.description : 'NONE'}
-                                  title={value !== undefined ? value.name : 'NONE'}>
-        <div>{value !== undefined ? value.name : 'NONE'}</div>
+      render: (value) => <Popover content={value ? value.description : 'NONE'}
+                                  title={value ? value.name : 'NONE'}>
+        <div>{value ? value.name : 'NONE'}</div>
       </Popover>
     },
     {
@@ -70,13 +70,13 @@ const PointTable = (props: PointTableProps): JSX.Element => {
       title: 'H coordinate',
       dataIndex: 'h',
       key: 'h',
-      render: value => value !== undefined ? value.toFixed(3) : 'NONE'
+      render: value => value ? value.toFixed(3) : 'NONE'
     },
     {
       title: 'Creator',
       dataIndex: 'creator',
       key: 'creator',
-      render: (value: IEmployee) => `${value !== undefined ? value.surname : 'NONE'} ${value !== undefined ? value.firstname : 'NONE'}`
+      render: (value: IEmployee) => `${value ? value.surname : 'NONE'} ${value ? value.firstname : 'NONE'}`
     },
     {
       title: 'Created',
