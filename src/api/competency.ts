@@ -1,16 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
-import { type CompetencyCreateRequest, type CompetencyUpdateRequest, type ICompetency } from '../view/competency'
+import { type CompetencyCreateRequest, type CompetencyUpdateRequest, type Competency } from '../view/competency'
+import {BASE_URL} from "./costants";
 
 export const competencyApi = createApi({
   reducerPath: 'easyPoint/competencies',
   refetchOnFocus: true,
   tagTypes: ['COMPETENCY'],
   baseQuery: fetchBaseQuery({
-    baseUrl: '/competencies',
+    baseUrl: `${BASE_URL}/competencies`,
     credentials: 'include'
   }),
   endpoints: build => ({
-    searchCompetencies: build.query<ICompetency[], void>({
+    searchCompetencies: build.query<Competency[], void>({
       query: () => ({
         url: '',
         method: 'GET'

@@ -2,11 +2,12 @@ import { toDateString } from '../../hooks'
 import { type ColumnsType } from 'antd/es/table'
 import { Table, Tag } from 'antd'
 import React from 'react'
-import { type IEmployee } from './index'
+import employee, { type Employee } from './index'
 import { jsx } from '@emotion/react'
 import JSX = jsx.JSX
+import { useNavigate } from 'react-router-dom'
 
-const columns: ColumnsType<IEmployee> = [
+const columns: ColumnsType<Employee> = [
   {
     title: 'Place in company',
     dataIndex: 'adminStructures',
@@ -56,13 +57,19 @@ const columns: ColumnsType<IEmployee> = [
 ]
 
 export interface EmployeeTableProps {
-  employees: IEmployee[]
+  employees: Employee[]
 }
 
 const EmployeeTable = (props: EmployeeTableProps): JSX.Element => {
-  return <>
-    <Table columns={columns} dataSource={props.employees} rowKey={(it) => (it.id)}/>
-  </>
+  const navigate = useNavigate()
+
+  return <Table columns={columns} dataSource={props.employees} rowKey={(it) => (it.id)} onRow={(employee, row) => {
+      return {
+        onClick: event => {
+          navigate(`/employees/${employee.id}`)
+        }
+      }
+    }}/>
 }
 
 export default EmployeeTable

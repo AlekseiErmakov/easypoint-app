@@ -15,8 +15,9 @@ import AreaStructureTypePage from '../structure/area/types'
 import AreaStructurePage from '../structure/area'
 import AdminStructureTypePage from '../structure/admin/types'
 import AdminStructurePage from '../structure/admin'
-import CompetencyPage from '../competency';
-import JobTitlePage from '../jobTitle';
+import CompetencyPage from '../competency'
+import JobTitlePage from '../jobTitle'
+import EmployeeInfoPage from '../employee/EmployeeInfoPage'
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -89,6 +90,7 @@ const MainLayout: React.FC = () => {
           <Content style={{ minHeight: 280, paddingRight: 10, paddingTop: 10 }}>
             <Routes>
               <Route path="/employees" element={<EmployeePage/>}/>
+              <Route path="/employees/:employeeId" element={<EmployeeInfoPage/>}/>
               <Route path="/competencies" element={<CompetencyPage/>}/>
               <Route path="/jobTitles" element={<JobTitlePage/>}/>
               <Route path="/points" element={<PointPage/>}/>

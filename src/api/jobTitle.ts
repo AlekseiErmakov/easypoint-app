@@ -1,16 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
-import { type IJobTitle, type JobTitleCreateRequest, type JobTitleUpdateRequest } from '../view/jobTitle'
+import { type JobTitle, type JobTitleCreateRequest, type JobTitleUpdateRequest } from '../view/jobTitle'
+import {BASE_URL} from "./costants";
 
 export const jobTitleApi = createApi({
   reducerPath: 'easyPoint/jobTitles',
   refetchOnFocus: true,
   tagTypes: ['JOB_TITLE'],
   baseQuery: fetchBaseQuery({
-    baseUrl: '/job-titles',
+    baseUrl: `${BASE_URL}/job-titles`,
     credentials: 'include'
   }),
   endpoints: build => ({
-    searchJobTitles: build.query<IJobTitle[], void>({
+    searchJobTitles: build.query<JobTitle[], void>({
       query: () => ({
         url: '',
         method: 'GET'

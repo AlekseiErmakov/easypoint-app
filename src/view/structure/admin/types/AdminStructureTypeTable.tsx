@@ -1,9 +1,9 @@
 import { type ColumnsType } from 'antd/es/table'
 import { Table } from 'antd'
-import { type IAdministrativeUnitType } from './index'
+import { type AdministrativeUnitType } from './index'
 import React from 'react'
 
-const columns: ColumnsType<IAdministrativeUnitType> = [
+const columns: ColumnsType<AdministrativeUnitType> = [
   {
     title: 'Name',
     dataIndex: 'name',
@@ -17,7 +17,7 @@ const columns: ColumnsType<IAdministrativeUnitType> = [
 ]
 
 interface AdminStructureTypeTableProps {
-  adminStructureTypes: IAdministrativeUnitType[]
+  adminStructureTypes: AdministrativeUnitType[]
 }
 
 const AdminStructureTypeTable = (props: AdminStructureTypeTableProps): JSX.Element => {

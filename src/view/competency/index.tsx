@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
-import {Form, Modal} from 'antd';
-import EpButton from '../../components/Button';
-import {PlusOutlined} from '@ant-design/icons';
+import React, { useState } from 'react'
+import { Form, Modal } from 'antd'
+import EpButton from '../../components/Button'
+import { PlusOutlined } from '@ant-design/icons'
 import {
   useCreateCompetencyMutation,
   useDeleteCompetencyMutation,
   useSearchCompetenciesQuery, useUpdateCompetencyMutation
-} from '../../api/competency';
-import CompetencyTable from './CompetencyTable';
-import CompetencyForm, {CompetencyFormResult} from './CompetencyForm';
-import JobTitleForm from '../jobTitle/JobTitleForm';
+} from '../../api/competency'
+import CompetencyTable from './CompetencyTable'
+import CompetencyForm, { type CompetencyFormResult } from './CompetencyForm'
+import JobTitleForm from '../jobTitle/JobTitleForm'
 
-export interface ICompetency {
+export interface Competency {
   id: number
   name: string
   description: string
@@ -31,8 +31,8 @@ export interface CompetencyUpdateRequest {
 const CompetencyPage = (): JSX.Element => {
   const { data } = useSearchCompetenciesQuery()
   const [showAddModal, setShowAddModal] = useState(false)
-  const [updatedCompetency, setUpdatedCompetency] = useState<undefined | ICompetency>(undefined)
-  const [deletedCompetency, setDeletedCompetency] = useState<undefined | ICompetency>(undefined)
+  const [updatedCompetency, setUpdatedCompetency] = useState<undefined | Competency>(undefined)
+  const [deletedCompetency, setDeletedCompetency] = useState<undefined | Competency>(undefined)
   const [addCompetency] = useCreateCompetencyMutation()
   const [updateCompetency] = useUpdateCompetencyMutation()
   const [deleteCompetency] = useDeleteCompetencyMutation()
@@ -42,11 +42,11 @@ const CompetencyPage = (): JSX.Element => {
     setShowAddModal(true)
   }
 
-  const showUpdateModal = (competency: ICompetency): void => {
+  const showUpdateModal = (competency: Competency): void => {
     setUpdatedCompetency(competency)
   }
 
-  const showDeleteModal = (competency: ICompetency): void => {
+  const showDeleteModal = (competency: Competency): void => {
     setDeletedCompetency(competency)
   }
 

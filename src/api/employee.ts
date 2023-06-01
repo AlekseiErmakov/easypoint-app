@@ -1,22 +1,29 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { type EmployeeCreateRequest, type IEmployee } from '../view/employee'
+import { type EmployeeCreateRequest, type Employee } from '../view/employee'
+import {BASE_URL} from "./costants";
 
 export const employeeApi = createApi({
   reducerPath: 'easyPoint/employee',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'employees',
+    baseUrl: `${BASE_URL}/employees`,
     credentials: 'include'
   }),
-  tagTypes: ['Employees'],
+  tagTypes: ['Employees', 'Employee'],
   refetchOnFocus: true,
   endpoints: build => ({
-    searchEmployees: build.query<IEmployee[], void>({
+    searchEmployees: build.query<Employee[], void>({
       query: () => ({
         url: ''
       }),
       providesTags: ['Employees']
     }),
-    createEmployee: build.mutation<IEmployee, EmployeeCreateRequest>({
+    searchEmployee: build.query<Employee[], number>({
+      query: (id) => ({
+        url: `/${id}`
+      }),
+      providesTags: ['Employee']
+    }),
+    createEmployee: build.mutation<Employee, EmployeeCreateRequest>({
       query (body) {
         return {
           url: '',
@@ -29,4 +36,4 @@ export const employeeApi = createApi({
   })
 })
 
-export const { useSearchEmployeesQuery, useCreateEmployeeMutation } = employeeApi
+export const { useSearchEmployeesQuery, useSearchEmployeeQuery, useCreateEmployeeMutation } = employeeApi

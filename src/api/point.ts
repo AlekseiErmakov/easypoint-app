@@ -1,22 +1,23 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
-import { type IPoint, type IPointCreateRequest, type IPointState, type IPointType, type IPointUpdateRequest } from '../view/point'
+import { type Point, type PointCreateRequest, type PointState, type PointType, type PointUpdateRequest } from '../view/point'
+import {BASE_URL} from "./costants";
 
 export const pointApi = createApi({
   reducerPath: 'easyPoint/point',
   baseQuery: fetchBaseQuery({
-    baseUrl: '/points',
+    baseUrl: `${BASE_URL}/points`,
     credentials: 'include'
   }),
   tagTypes: ['Points'],
   refetchOnFocus: true,
   endpoints: build => ({
-    searchPoints: build.query<IPoint[], void>({
+    searchPoints: build.query<Point[], void>({
       query: () => ({
         url: ''
       }),
       providesTags: ['Points']
     }),
-    createPoint: build.mutation<IPoint, IPointCreateRequest>({
+    createPoint: build.mutation<Point, PointCreateRequest>({
       query (body) {
         return {
           url: '',
@@ -26,7 +27,7 @@ export const pointApi = createApi({
       },
       invalidatesTags: [{ type: 'Points' }]
     }),
-    updatePoint: build.mutation<IPoint, IPointUpdateRequest>({
+    updatePoint: build.mutation<Point, PointUpdateRequest>({
       query (body) {
         return {
           url: `/${body.id}`,
@@ -69,11 +70,12 @@ export const {
 export const pointTypeApi = createApi({
   reducerPath: 'easyPoint/pointTypes',
   baseQuery: fetchBaseQuery({
-    credentials: 'include'
+    credentials: 'include',
+    baseUrl: BASE_URL
   }),
   refetchOnFocus: true,
   endpoints: build => ({
-    searchPointTypes: build.query<IPointType[], void>({
+    searchPointTypes: build.query<PointType[], void>({
       query: () => ({
         url: '/point-type'
       })
@@ -84,11 +86,12 @@ export const { useSearchPointTypesQuery } = pointTypeApi
 export const pointStateApi = createApi({
   reducerPath: 'easyPoint/pointStates',
   baseQuery: fetchBaseQuery({
-    credentials: 'include'
+    credentials: 'include',
+    baseUrl: BASE_URL
   }),
   refetchOnFocus: true,
   endpoints: build => ({
-    searchPointStates: build.query<IPointState[], any>({
+    searchPointStates: build.query<PointState[], any>({
       query: () => ({
         url: '/point-state'
       })

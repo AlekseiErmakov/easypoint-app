@@ -1,18 +1,17 @@
 import { type ColumnsType } from 'antd/es/table'
 import { Table } from 'antd'
-import { type ICompetency } from './index'
-import {IJobTitle} from '../jobTitle';
-import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
-import React from 'react';
+import { type Competency } from './index'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import React from 'react'
 
 interface CompetencyTableProps {
-  competencies: ICompetency[]
-  showUpdateModal: (competency: ICompetency) => void
-  showDeleteModal: (competency: ICompetency) => void
+  competencies: Competency[]
+  showUpdateModal: (competency: Competency) => void
+  showDeleteModal: (competency: Competency) => void
 }
 
 const CompetencyTable = (props: CompetencyTableProps): JSX.Element => {
-  const columns: ColumnsType<ICompetency> = [
+  const columns: ColumnsType<Competency> = [
     {
       title: 'Name',
       dataIndex: 'name',

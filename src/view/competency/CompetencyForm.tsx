@@ -1,11 +1,11 @@
 import { type FormInstance } from 'antd/es/form/hooks/useForm'
 import { Form, Input } from 'antd'
 import React, { useEffect } from 'react'
-import { type ICompetency } from './index'
+import { type Competency } from './index'
 
 interface CompetencyFormProps {
   form: FormInstance
-  competency?: ICompetency
+  competency?: Competency
 
   onFinish: (request: CompetencyFormResult) => void
 }
@@ -19,7 +19,7 @@ const CompetencyForm = (props: CompetencyFormProps): JSX.Element => {
   useEffect(() => {
     props.form.setFieldsValue({ ...props.competency })
   }, [props.competency])
-  return <>
+  return <div>
     <Form
       form={props.form}
       name="basic"
@@ -44,7 +44,7 @@ const CompetencyForm = (props: CompetencyFormProps): JSX.Element => {
         <Input/>
       </Form.Item>
     </Form>
-  </>
+  </div>
 }
 
 export default CompetencyForm

@@ -5,17 +5,17 @@ import EmployeeTable from './EmployeeTable'
 import { UserAddOutlined } from '@ant-design/icons'
 import EmployeeForm from './EmployeeForm'
 import EpButton from '../../components/Button'
-import { type IAdministrativeUnit } from '../structure/admin'
+import { type AdministrativeUnit } from '../structure/admin'
 import { jsx } from '@emotion/react'
 import JSX = jsx.JSX
-import {useSearchAdministrativeUnitsQuery} from '../../api/adminStructure';
+import { useSearchAdministrativeUnitsQuery } from '../../api/adminStructure'
 
-export interface IEmployee {
+export interface Employee {
   id: number
   firstname: string
   surname: string
   lastname: string
-  administrativeUnits: IAdministrativeUnit[]
+  administrativeUnits: AdministrativeUnit[]
   created?: Date
   updated?: Date
 }
@@ -44,9 +44,10 @@ const EmployeePage = (): JSX.Element => {
     setIsModalOpen(false)
   }
 
-  const handleCancel = () => {
+  const handleCancel = (): void => {
     setIsModalOpen(false)
   }
+
   return <>
     <EpButton onClick={showModal} icon={<UserAddOutlined/>}/>
     {isLoading ? <h1>Loading</h1> : <EmployeeTable employees={(data != null) ? data : []}/>}

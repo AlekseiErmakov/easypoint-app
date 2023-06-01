@@ -10,8 +10,7 @@ interface AdminStructureTypeProps {
 }
 
 const AdminStructureTypeForm = (props: AdminStructureTypeProps): JSX.Element => {
-  return <>
-    <Form
+  return <Form
       form={props.form}
       name="basic"
       labelCol={{ span: 6 }}
@@ -35,7 +34,6 @@ const AdminStructureTypeForm = (props: AdminStructureTypeProps): JSX.Element => 
         <Input/>
       </Form.Item>
     </Form>
-  </>
 }
 
 export default AdminStructureTypeForm

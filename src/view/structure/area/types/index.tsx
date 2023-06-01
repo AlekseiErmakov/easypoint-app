@@ -6,7 +6,7 @@ import AreaStructureTypeTable from './AreaStructureTypeTable'
 import AreaStructureTypeForm from './AreaStructureTypeForm'
 import EpButton from '../../../../components/Button'
 
-export interface IAreaStructureType {
+export interface AreaStructureType {
   id: number
   name: string
   description: string
@@ -31,7 +31,7 @@ const AreaStructureTypePage = (): JSX.Element => {
   }
 
   const handleOk = (areaStructureType: AreaStructureTypeCreateRequest): void => {
-    addAreaStructureType(areaStructureType)
+    void addAreaStructureType(areaStructureType)
     form.resetFields()
     setShowAddModal(false)
   }

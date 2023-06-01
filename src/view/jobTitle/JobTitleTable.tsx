@@ -1,17 +1,17 @@
 import { type ColumnsType } from 'antd/es/table'
 import { Table } from 'antd'
-import { type IJobTitle } from './index'
+import { type JobTitle } from './index'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import React from 'react'
 
 interface JobTitleTableProps {
-  jobTitles: IJobTitle[]
-  showUpdateModal: (iJobTitle: IJobTitle) => void
-  showDeleteModal: (iJobTitle: IJobTitle) => void
+  jobTitles: JobTitle[]
+  showUpdateModal: (iJobTitle: JobTitle) => void
+  showDeleteModal: (iJobTitle: JobTitle) => void
 }
 
 const JobTitleTable = (props: JobTitleTableProps): JSX.Element => {
-  const columns: ColumnsType<IJobTitle> = [
+  const columns: ColumnsType<JobTitle> = [
     {
       title: 'Name',
       dataIndex: 'name',

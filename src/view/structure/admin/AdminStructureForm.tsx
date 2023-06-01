@@ -1,21 +1,24 @@
 import { type FormInstance } from 'antd/es/form/hooks/useForm'
 import { Form, Input, Select } from 'antd'
 import React from 'react'
-import { type IAdministrativeUnitType } from './types'
-import {type AdministrativeUnitCreateRequest, type IAdministrativeUnit, ISimpleAdministrativeUnit} from './index'
+import { type AdministrativeUnitType } from './types'
+import {
+  type AdministrativeUnitCreateRequest,
+  type AdministrativeUnit,
+  SimpleAdministrativeUnit
+} from './index'
 
 interface AdminStructureTypeProps {
   form: FormInstance
 
-  administrativeUnits: ISimpleAdministrativeUnit[]
-  administrativeUnitTypes: IAdministrativeUnitType[]
+  administrativeUnits: SimpleAdministrativeUnit[]
+  administrativeUnitTypes: AdministrativeUnitType[]
 
   onFinish: (adminStructure: AdministrativeUnitCreateRequest) => void
 }
 
 export const AdminStructureForm = (props: AdminStructureTypeProps): JSX.Element => {
-  return <>
-    <Form
+  return <Form
       form={props.form}
       name="basic"
       labelCol={{ span: 10 }}
@@ -43,5 +46,4 @@ export const AdminStructureForm = (props: AdminStructureTypeProps): JSX.Element 
         <Input/>
       </Form.Item>
     </Form>
-  </>
 }

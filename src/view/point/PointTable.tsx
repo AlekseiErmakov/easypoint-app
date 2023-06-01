@@ -1,19 +1,19 @@
 import { type ColumnsType } from 'antd/es/table'
 import { toDateString } from '../../hooks'
 import React from 'react'
-import { type IPoint, PointStates } from './index'
+import { type Point, PointStates } from './index'
 import { Popover, Table, Tag } from 'antd'
-import { type IEmployee } from '../employee'
+import { type Employee } from '../employee'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 
 interface PointTableProps {
-  points: IPoint[]
-  showDeleteModal: (point: IPoint) => void
-  showUpdateModel: (point: IPoint) => void
+  points: Point[]
+  showDeleteModal: (point: Point) => void
+  showUpdateModel: (point: Point) => void
 }
 
 const PointTable = (props: PointTableProps): JSX.Element => {
-  const columns: ColumnsType<IPoint> = [
+  const columns: ColumnsType<Point> = [
     {
       title: 'Location',
       key: 'areas',
@@ -37,7 +37,7 @@ const PointTable = (props: PointTableProps): JSX.Element => {
       key: 'pointType',
       render: (value) => <Popover content={value ? value.description : 'NONE'}
                                   title={value ? value.name : 'NONE'}>
-        <div>{value ? value.name : 'NONE'}</div>
+        <div>{(value) ? value.name : 'NONE'}</div>
       </Popover>
     },
     {
@@ -76,7 +76,7 @@ const PointTable = (props: PointTableProps): JSX.Element => {
       title: 'Creator',
       dataIndex: 'creator',
       key: 'creator',
-      render: (value: IEmployee) => `${value ? value.surname : 'NONE'} ${value ? value.firstname : 'NONE'}`
+      render: (value: Employee) => `${value ? value.surname : 'NONE'} ${value ? value.firstname : 'NONE'}`
     },
     {
       title: 'Created',
@@ -96,7 +96,7 @@ const PointTable = (props: PointTableProps): JSX.Element => {
       render: (_, point) => {
         return point.pointState.code === PointStates.CREATED
           ? <div onClick={_ => { props.showUpdateModel(point) }}><EditOutlined/></div>
-          : <></>
+          : <div></div>
       }
     },
     {
@@ -105,7 +105,7 @@ const PointTable = (props: PointTableProps): JSX.Element => {
       render: (_, point) => {
         return point.pointState.code === PointStates.CREATED
           ? <div onClick={_ => { props.showDeleteModal(point) }}><DeleteOutlined/></div>
-          : <></>
+          : <div></div>
       }
     }
   ]

@@ -6,7 +6,7 @@ import { Form, Modal } from 'antd'
 import TotalStationForm from './TotalStationForm'
 import EpButton from '../../../components/Button'
 
-export interface ITotalStation {
+export interface TotalStation {
   id: number
   firm: string
   model: string

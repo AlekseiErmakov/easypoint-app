@@ -1,4 +1,4 @@
-import { type IAreaStructureType } from './types'
+import { type AreaStructureType } from './types'
 import React, { useState } from 'react'
 import { Col, Form, Modal, Row, Tree, type TreeDataNode } from 'antd'
 import {
@@ -11,21 +11,21 @@ import { AreaStructureForm } from './AreaStructureForm'
 import { useSearchAreaStructureTypeQuery } from '../../../api/areaStructureType'
 import EpButton from '../../../components/Button'
 
-export interface IAreaStructure {
+export interface AreaStructure {
   id: number
   name: string
   description: string
-  parent?: IAreaStructure
-  children: IAreaStructure[]
-  areaStructureType: IAreaStructureType
+  parent?: AreaStructure
+  children: AreaStructure[]
+  areaStructureType: AreaStructureType
 }
 
 export interface TreeAreaStructure extends TreeDataNode {
   value: number
   description: string
   label: string
-  parent?: IAreaStructure
-  areaStructureType: IAreaStructureType
+  parent?: AreaStructure
+  areaStructureType: AreaStructureType
 }
 
 export interface AreaStructureCreateRequest {
@@ -40,11 +40,11 @@ export interface AreaStructureLinkRequest {
   parentId: number
 }
 
-export interface IArea {
+export interface Area {
   id: number
   name: string
   description: string
-  areaStructureType: IAreaStructureType
+  areaStructureType: AreaStructureType
 }
 
 const AreaStructurePage = () => {
@@ -65,7 +65,7 @@ const AreaStructurePage = () => {
 
   const handleOk = (areaStructure: AreaStructureCreateRequest): void => {
     console.log(areaStructure)
-    createAreaStructure(areaStructure)
+    void createAreaStructure(areaStructure)
     form.resetFields()
     setShowAddModal(false)
   }

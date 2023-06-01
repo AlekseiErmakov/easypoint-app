@@ -1,17 +1,18 @@
-import React, { type CSSProperties, useEffect } from 'react'
+import React, {type CSSProperties, useEffect, useState} from 'react'
 import { Button, Card, Checkbox, Form, Input } from 'antd'
 import axios from 'axios'
-import { type IUser, useActions } from './reducer'
+import { type User, useActions } from './reducer'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
+import {BASE_URL} from "../../api/costants";
 
 interface LoginPassword {
   username: string
   password: string
 }
 
-interface IResponse {
-  data: IUser
+interface Response {
+  data: User
 }
 
 const containerStyles: CSSProperties = {
@@ -27,19 +28,26 @@ const LoginForm: React.FC = () => {
   const { authenticate } = useActions()
   const [cookies, setCookie] = useCookies(['Authorization'])
   const navigate = useNavigate()
+  const [authorization, setAuthorization] = useState<string | undefined>(undefined);
   const onFinish = (request: LoginPassword): void => {
-    void axios.post<LoginPassword, IResponse>('/auth/authenticate', request)
+    void axios.post<LoginPassword, Response>(`${BASE_URL}/auth/authenticate`, request)
       .then(resp => {
         authenticate(resp.data)
-        setCookie('Authorization', 'Bearer ' + resp.data.token)
+        setCookie('Authorization', `Bearer  ${resp.data.token}`)
+        setAuthorization( `Bearer  ${resp.data.token}`)
         navigate('/')
       })
   }
+  if (authorization) {
+    setCookie('Authorization', authorization)
+  }
+
   const onFinishFailed = (errorInfo: any): void => {
     console.log('Failed:', errorInfo)
   }
   useEffect(() => {
     if (cookies.Authorization !== undefined) {
+      console.log(cookies)
       navigate('/')
     }
   }, [])

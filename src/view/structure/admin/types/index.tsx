@@ -9,7 +9,7 @@ import {
   useSearchAdminStructureTypeQuery
 } from '../../../../api/adminStructureType'
 
-export interface IAdministrativeUnitType {
+export interface AdministrativeUnitType {
   id: number
   name: string
   description: string

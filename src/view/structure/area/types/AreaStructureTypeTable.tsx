@@ -1,8 +1,9 @@
-import { type IAreaStructureType } from './index'
+import { type AreaStructureType } from './index'
 import { type ColumnsType } from 'antd/es/table'
 import { Table } from 'antd'
+import React from "react";
 
-const columns: ColumnsType<IAreaStructureType> = [
+const columns: ColumnsType<AreaStructureType> = [
   {
     title: 'Name',
     dataIndex: 'name',
@@ -16,7 +17,7 @@ const columns: ColumnsType<IAreaStructureType> = [
 ]
 
 interface AreaStructureTypeTableProps {
-  areaStructureTypes: IAreaStructureType[]
+  areaStructureTypes: AreaStructureType[]
 }
 
 const AreaStructureTypeTable = (props: AreaStructureTypeTableProps): JSX.Element => {

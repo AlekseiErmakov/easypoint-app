@@ -10,7 +10,7 @@ export interface UploadRequest {
 }
 
 export const downLoadFile = (request: DownloadRequest): void => {
-  axios.get<BlobPart>(request.url, { withCredentials: true })
+  void axios.get<BlobPart>(request.url, { withCredentials: true })
     .catch()
     .then(response => {
       const url = window.URL.createObjectURL(new Blob([response.data]))
@@ -28,7 +28,7 @@ export const downLoadFile = (request: DownloadRequest): void => {
 export const uploadFile = (request: UploadRequest): void => {
   const formData = new FormData()
   formData.append('image', request.file)
-  axios.post(request.url, formData, {
+  void axios.post(request.url, formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
     }

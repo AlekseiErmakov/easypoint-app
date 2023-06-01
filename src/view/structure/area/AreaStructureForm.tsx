@@ -1,19 +1,18 @@
 import { type FormInstance } from 'antd/es/form/hooks/useForm'
-import { type IAreaStructureType } from './types'
-import { type AreaStructureCreateRequest, type IArea } from './index'
+import { type AreaStructureType } from './types'
+import { type AreaStructureCreateRequest, type Area } from './index'
 import { Form, Input, Select } from 'antd'
 import React from 'react'
 
 interface AreaStructureTypeProps {
   form: FormInstance
-  areas: IArea[]
-  areaStructureTypes: IAreaStructureType[]
+  areas: Area[]
+  areaStructureTypes: AreaStructureType[]
   onFinish: (areaStructure: AreaStructureCreateRequest) => void
 }
 
 export const AreaStructureForm = (props: AreaStructureTypeProps): JSX.Element => {
-  return <>
-    <Form
+  return <Form
       form={props.form}
       name="basic"
       labelCol={{ span: 10 }}
@@ -41,5 +40,4 @@ export const AreaStructureForm = (props: AreaStructureTypeProps): JSX.Element =>
         <Input/>
       </Form.Item>
     </Form>
-  </>
 }

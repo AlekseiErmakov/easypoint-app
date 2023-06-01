@@ -10,10 +10,8 @@ import {
   useSearchJobTitlesQuery,
   useUpdateJobTitleMutation
 } from '../../api/jobTitle'
-import PointForm, { PointFormResult } from '../point/PointForm'
-import {IPoint} from '../point';
 
-export interface IJobTitle {
+export interface JobTitle {
   id: number
   name: string
   description: string
@@ -33,8 +31,8 @@ export interface JobTitleUpdateRequest {
 const JobTitlePage = (): JSX.Element => {
   const { data } = useSearchJobTitlesQuery()
   const [showAddModal, setShowAddModal] = useState(false)
-  const [updatedJobTitle, setUpdatedJobTitle] = useState<undefined | IJobTitle>(undefined)
-  const [deletedJobTitle, setDeletedJobTitle] = useState<undefined | IJobTitle>(undefined)
+  const [updatedJobTitle, setUpdatedJobTitle] = useState<undefined | JobTitle>(undefined)
+  const [deletedJobTitle, setDeletedJobTitle] = useState<undefined | JobTitle>(undefined)
   const [addJobTitle] = useCreateJobTitleMutation()
   const [updateJobTitle] = useUpdateJobTitleMutation()
   const [deleteJobTitle] = useDeleteJobTitleMutation()
@@ -43,11 +41,11 @@ const JobTitlePage = (): JSX.Element => {
     setShowAddModal(true)
   }
 
-  const showUpdateModal = (jobTitle: IJobTitle): void => {
+  const showUpdateModal = (jobTitle: JobTitle): void => {
     setUpdatedJobTitle(jobTitle)
   }
 
-  const showDeleteModal = (jobTitle: IJobTitle): void => {
+  const showDeleteModal = (jobTitle: JobTitle): void => {
     setDeletedJobTitle(jobTitle)
   }
 

@@ -1,5 +1,5 @@
 import { Col, Form, Modal, Row, Tree, type TreeDataNode } from 'antd'
-import { type IAdministrativeUnitType } from './types'
+import { type AdministrativeUnitType } from './types'
 import React, { useState } from 'react'
 import EpButton from '../../../components/Button'
 import { PlusOutlined } from '@ant-design/icons'
@@ -11,21 +11,21 @@ import {
 import { useSearchAdminStructureTypeQuery } from '../../../api/adminStructureType'
 import { AdminStructureForm } from './AdminStructureForm'
 
-export interface IAdministrativeUnit {
+export interface AdministrativeUnit {
   id: number
   name: string
   description: string
-  parent?: IAdministrativeUnit
-  children: IAdministrativeUnit[]
-  administrativeUnitType: IAdministrativeUnitType
+  parent?: AdministrativeUnit
+  children: AdministrativeUnit[]
+  administrativeUnitType: AdministrativeUnitType
 }
 
 export interface AdministrativeUnitTree extends TreeDataNode {
   value: number
   description: string
   label: string
-  parent?: IAdministrativeUnit
-  administrativeUnitType: IAdministrativeUnitType
+  parent?: AdministrativeUnit
+  administrativeUnitType: AdministrativeUnitType
 }
 
 export interface AdministrativeUnitCreateRequest {
@@ -35,11 +35,11 @@ export interface AdministrativeUnitCreateRequest {
   parentId?: number
 }
 
-export interface ISimpleAdministrativeUnit {
+export interface SimpleAdministrativeUnit {
   id: number
   name: string
   description: string
-  administrativeUnitType: IAdministrativeUnitType
+  administrativeUnitType: AdministrativeUnitType
 }
 
 const AdminStructurePage = (): JSX.Element => {

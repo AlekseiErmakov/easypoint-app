@@ -3,18 +3,19 @@ import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 import {
   type AreaStructureCreateRequest,
   type AreaStructureLinkRequest,
-  type IArea,
-  type IAreaStructure,
+  type Area,
+  type AreaStructure,
   type TreeAreaStructure
 } from '../view/structure/area'
 import { toTreeNode } from './trenode'
+import {BASE_URL} from "./costants";
 
 export const areaStructureApi = createApi({
   reducerPath: 'easyPoint/areaStructure',
   refetchOnFocus: true,
   tagTypes: ['AREA_STRUCTURE'],
   baseQuery: fetchBaseQuery({
-    baseUrl: '/areas',
+    baseUrl: `${BASE_URL}/areas`,
     credentials: 'include'
   }),
   endpoints: build => ({
@@ -23,12 +24,12 @@ export const areaStructureApi = createApi({
         url: '/structure',
         method: 'GET'
       }),
-      transformResponse: (response: IAreaStructure[]): TreeAreaStructure[] => {
+      transformResponse: (response: AreaStructure[]): TreeAreaStructure[] => {
         return response.map(it => toTreeNode(it))
       },
       providesTags: ['AREA_STRUCTURE']
     }),
-    searchAreas: build.query<IArea[], void>({
+    searchAreas: build.query<Area[], void>({
       query: () => ({
         url: '',
         method: 'GET'

@@ -2,12 +2,12 @@ import { Form, Input, Select } from 'antd'
 import React from 'react'
 import { type EmployeeCreateRequest } from './index'
 import { type FormInstance } from 'antd/es/form/hooks/useForm'
-import { type ISimpleAdministrativeUnit } from '../structure/admin'
+import { type SimpleAdministrativeUnit } from '../structure/admin'
 
 interface EmployeeFormProps {
   onFinish: (employee: EmployeeCreateRequest) => void
   form: FormInstance
-  administrativeUnits: ISimpleAdministrativeUnit[]
+  administrativeUnits: SimpleAdministrativeUnit[]
 }
 
 const EmployeeForm = (props: EmployeeFormProps): JSX.Element => {

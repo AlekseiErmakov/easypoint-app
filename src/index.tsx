@@ -14,7 +14,7 @@ import { adminStructureTypeApi } from './api/adminStructureType'
 import { administrativeUnitApi } from './api/adminStructure'
 import { rtkQueryErrorLogger } from './api/useApi'
 import { competencyApi } from './api/competency'
-import {jobTitleApi} from './api/jobTitle';
+import { jobTitleApi } from './api/jobTitle'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

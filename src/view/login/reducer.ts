@@ -1,18 +1,18 @@
 import { bindActionCreators, createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { type TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { type RootState } from '../../index'
-import { type IEmployee } from '../employee'
+import { type Employee } from '../employee'
 
-export interface IUser {
+export interface User {
   username: string
   token: string
 
-  employee: IEmployee
+  employee: Employee
 }
 
 export interface AuthenticationState {
   authenticated: boolean
-  user?: IUser
+  user?: User
 }
 
 const initialState: AuthenticationState = {
@@ -23,7 +23,7 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    authenticate (state, action: PayloadAction<IUser>) {
+    authenticate (state, action: PayloadAction<User>) {
       return {
         authenticated: true,
         user: action.payload

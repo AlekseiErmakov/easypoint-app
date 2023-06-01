@@ -1,0 +1,8 @@
+version: '1'
+services:
+  easy-point-client:
+    container_name: 'easy-point-client'
+    build:
+      context: .
+    ports:
+      - 8081:8081

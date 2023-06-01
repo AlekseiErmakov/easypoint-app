@@ -10,8 +10,7 @@ interface AreaStructureTypeProps {
 }
 
 const AreaStructureTypeForm = (props: AreaStructureTypeProps): JSX.Element => {
-  return <>
-    <Form
+  return <Form
       form={props.form}
       name="basic"
       labelCol={{ span: 6 }}
@@ -35,7 +34,6 @@ const AreaStructureTypeForm = (props: AreaStructureTypeProps): JSX.Element => {
         <Input/>
       </Form.Item>
     </Form>
-  </>
 }
 
 export default AreaStructureTypeForm

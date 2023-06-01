@@ -1,14 +1,14 @@
-import { type ITotalStation } from './index'
+import { type TotalStation } from './index'
 import { type ColumnsType } from 'antd/es/table'
 import { Table } from 'antd'
 import React from 'react'
 
 interface TotalStationTableProps {
-  totalStations: ITotalStation[]
+  totalStations: TotalStation[]
 }
 
 const TotalStationTable = (props: TotalStationTableProps) => {
-  const columns: ColumnsType<ITotalStation> = [
+  const columns: ColumnsType<TotalStation> = [
     {
       title: 'Firm',
       dataIndex: 'firm',

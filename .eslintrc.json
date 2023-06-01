@@ -1,23 +1,87 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es6": true,
+    "es2017": true,
+    "jest": true
   },
   "extends": [
+    "eslint:recommended",
     "plugin:react/recommended",
-    "standard-with-typescript"
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
-  "overrides": [
-  ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json",
-    "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2017,
     "sourceType": "module"
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["@typescript-eslint",  "react", "react-hooks", "import"],
   "rules": {
-    "@typescript-eslint/no-invalid-void-type": ["error"]
+    "import/first": "warn",
+    "import/newline-after-import": "warn",
+    "import/no-duplicates": "warn",
+    "import/no-default-export": "warn",
+    "no-multi-spaces": "warn",
+    "no-unused-vars": "warn",
+    "no-case-declarations": "warn",
+    "jsx-quotes": "warn",
+    "no-console": [
+      "warn",
+      {
+        "allow": ["warn", "error", "info"]
+      }
+    ],
+    "react/no-unescaped-entities": "error",
+    "react/display-name": "off",
+    "react/jsx-sort-props": "off",
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-no-duplicate-props": "error",
+    "react/jsx-no-useless-fragment": "error",
+    "react/jsx-pascal-case": "error",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "format": ["PascalCase"],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": false
+        }
+      }
+    ],
+    "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "@typescript-eslint/no-empty-function": "error",
+    "@typescript-eslint/no-use-before-define": "warn",
+    "@typescript-eslint/no-misused-promises": "warn",
+    "@typescript-eslint/await-thenable": "warn",
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "types": {
+          "object": false
+        }
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

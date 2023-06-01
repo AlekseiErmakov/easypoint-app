@@ -1,11 +1,11 @@
 import { type FormInstance } from 'antd/es/form/hooks/useForm'
 import { Form, Input } from 'antd'
 import React, {useEffect} from 'react'
-import {IJobTitle, type JobTitleCreateRequest} from './index'
+import {JobTitle, type JobTitleCreateRequest} from './index'
 
 interface JobTitleFormProps {
   form: FormInstance
-  jobTitle?: IJobTitle
+  jobTitle?: JobTitle
   onFinish: (request: JobTitleCreateRequest) => void
 }
 
@@ -18,8 +18,7 @@ const JobTitleForm = (props: JobTitleFormProps): JSX.Element => {
   useEffect(() => {
     props.form.setFieldsValue({ ...props.jobTitle })
   }, [props.jobTitle])
-  return <>
-    <Form
+  return <Form
       form={props.form}
       name="basic"
       labelCol={{ span: 6 }}
@@ -43,7 +42,7 @@ const JobTitleForm = (props: JobTitleFormProps): JSX.Element => {
         <Input/>
       </Form.Item>
     </Form>
-  </>
+
 }
 
 export default JobTitleForm

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form, Modal, Upload } from 'antd'
 import { CloudDownloadOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons'
-import { type IEmployee } from '../employee'
+import { type Employee } from '../employee'
 import {
   useCreatePointMutation,
   useDeletePointMutation,
@@ -13,7 +13,7 @@ import {
 import PointTable from './PointTable'
 import PointForm, { type PointFormResult } from './PointForm'
 import { useSearchAreaStructureQuery } from '../../api/areaStructure'
-import { type IArea } from '../structure/area'
+import { type Area } from '../structure/area'
 import EpButton from '../../components/Button'
 import { downLoadFile } from '../../api/download'
 import { jsx } from '@emotion/react'
@@ -31,36 +31,36 @@ export enum PointStates {
   READY_TO_USE = 'READY_TO_USE'
 }
 
-export interface IPointType {
+export interface PointType {
   id: number
   code: PointTypes
   name: string
   description: string
 }
 
-export interface IPointState {
+export interface PointState {
   id: number
   code: PointStates
   name: string
   description: string
 }
 
-export interface IPoint {
+export interface Point {
   id: number
   name: string
   x: number
   y: number
   h: number
   rootAreaId?: number
-  areas: IArea[]
-  pointType: IPointType
-  pointState: IPointState
+  areas: Area[]
+  pointType: PointType
+  pointState: PointState
   created?: Date
   updated?: Date
-  creator: IEmployee
+  creator: Employee
 }
 
-export interface IPointCreateRequest {
+export interface PointCreateRequest {
   name: string
   x: number
   y: number
@@ -69,7 +69,7 @@ export interface IPointCreateRequest {
   pointAreaId: number
 }
 
-export interface IPointUpdateRequest {
+export interface PointUpdateRequest {
   id: number
   name: string
   x: number
@@ -88,8 +88,8 @@ const PointPage = (): JSX.Element => {
   const [deletePoint] = useDeletePointMutation()
   const [savePoints] = useSavePointCsvMutation()
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [updatedPoint, setUpdatedPoint] = useState<IPoint | undefined>(undefined)
-  const [pointForDelete, setPointForDelete] = useState<IPoint | undefined>(undefined)
+  const [updatedPoint, setUpdatedPoint] = useState<Point | undefined>(undefined)
+  const [pointForDelete, setPointForDelete] = useState<Point | undefined>(undefined)
   const [form] = Form.useForm()
 
   const showModal = (): void => {
@@ -100,17 +100,17 @@ const PointPage = (): JSX.Element => {
     downLoadFile({ url: '/points/csv' })
   }
 
-  const showDeleteModal = (point: IPoint): void => {
+  const showDeleteModal = (point: Point): void => {
     setPointForDelete(point)
   }
 
-  const showUpdateModal = (point: IPoint): void => {
+  const showUpdateModal = (point: Point): void => {
     setUpdatedPoint(point)
   }
 
   const handleSave = (point: PointFormResult): void => {
     console.log(point)
-    addPoint({ ...point })
+    void addPoint({ ...point })
     form.resetFields()
     setIsModalOpen(false)
   }
@@ -134,7 +134,9 @@ const PointPage = (): JSX.Element => {
   }
 
   const handleDelete = (): void => {
-    void deletePoint(pointForDelete?.id!)
+    if (pointForDelete != undefined) {
+      void deletePoint(pointForDelete.id)
+    }
     setPointForDelete(undefined)
   }
 

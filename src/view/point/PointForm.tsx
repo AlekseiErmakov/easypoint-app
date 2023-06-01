@@ -1,5 +1,5 @@
 import { type FormInstance } from 'antd/es/form/hooks/useForm'
-import { type IPoint, type IPointType } from './index'
+import { type Point, type PointType } from './index'
 import { Form, Input, InputNumber, Select, TreeSelect } from 'antd'
 import React, { useEffect } from 'react'
 import { type TreeAreaStructure } from '../structure/area'
@@ -8,8 +8,8 @@ interface PointFormProps {
   onFinish: (point: PointFormResult) => void
   form: FormInstance
   areaStructure: TreeAreaStructure[]
-  pointTypes: IPointType[]
-  point?: IPoint
+  pointTypes: PointType[]
+  point?: Point
 }
 
 export interface PointFormResult {
