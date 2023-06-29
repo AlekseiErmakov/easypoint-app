@@ -1,48 +1,37 @@
-import React, { useState } from 'react'
-import { Form, Modal } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
-import { useCreateAreaStructureTypeMutation, useSearchAreaStructureTypeQuery } from '../../../../api/areaStructureType'
-import AreaStructureTypeTable from './AreaStructureTypeTable'
-import AreaStructureTypeForm from './AreaStructureTypeForm'
-import EpButton from '../../../../components/Button'
+import React from 'react'
+import {
+    useCreateAreaStructureTypeMutation,
+    useDeleteAreaStructureTypeMutation,
+    useSearchAreaStructureTypeQuery,
+    useUpdateAreaStructureTypeMutation
+} from '../../../../api/areaStructureType'
+import DictionaryPage from "../../../../jobTitle";
 
 export interface AreaStructureType {
-  id: number
-  name: string
-  description: string
+    id: number
+    name: string
+    description: string
 }
 
 export interface AreaStructureTypeCreateRequest {
-  name: string
-  description: string
+    name: string
+    description: string
+}
+
+export interface AreaStructureTypeUpdateRequest {
+    id: number
+    name?: string
+    description?: string
 }
 
 const AreaStructureTypePage = (): JSX.Element => {
-  const { data } = useSearchAreaStructureTypeQuery()
-  const [showAddModal, setShowAddModal] = useState(false)
-  const [addAreaStructureType] = useCreateAreaStructureTypeMutation()
-  const [form] = Form.useForm()
-  const showModal = (): void => {
-    setShowAddModal(true)
-  }
-
-  const handleCancel = (): void => {
-    setShowAddModal(false)
-  }
-
-  const handleOk = (areaStructureType: AreaStructureTypeCreateRequest): void => {
-    void addAreaStructureType(areaStructureType)
-    form.resetFields()
-    setShowAddModal(false)
-  }
-
-  return <>
-    <EpButton icon={<PlusOutlined/>} onClick={showModal}/>
-    <AreaStructureTypeTable areaStructureTypes={(data != null) ? data : []}/>
-    <Modal title="Add total station" open={showAddModal} onOk={form.submit} onCancel={handleCancel}>
-      <AreaStructureTypeForm onFinish={handleOk} form={form}/>
-    </Modal>
-  </>
+    return <DictionaryPage createDictionary={useCreateAreaStructureTypeMutation}
+                           deleteDictionary={useDeleteAreaStructureTypeMutation}
+                           updateDictionary={useUpdateAreaStructureTypeMutation}
+                           dictionaryQuery={useSearchAreaStructureTypeQuery}
+                           dType="AreaStructureType"
+                           dictionaryName="Area Structure Type"
+    />
 }
 
 export default AreaStructureTypePage

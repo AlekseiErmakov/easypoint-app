@@ -1,23 +1,15 @@
 import { type FormInstance } from 'antd/es/form/hooks/useForm'
 import { Form, Input } from 'antd'
 import React, {useEffect} from 'react'
-import {JobTitle, type JobTitleCreateRequest} from './index'
+import {Dictionary, DictionaryCreateRequest, DictionaryUpdateRequest} from './index'
 
-interface JobTitleFormProps {
+interface DictionaryFormProps<T extends Dictionary, C extends DictionaryCreateRequest, U extends DictionaryUpdateRequest> {
   form: FormInstance
-  jobTitle?: JobTitle
-  onFinish: (request: JobTitleCreateRequest) => void
+  onFinish: (request: C) => void
 }
 
-export interface JobTitleFormResult {
-  name: string
-  description: string
-}
 
-const JobTitleForm = (props: JobTitleFormProps): JSX.Element => {
-  useEffect(() => {
-    props.form.setFieldsValue({ ...props.jobTitle })
-  }, [props.jobTitle])
+function DictionaryCreateForm<T extends Dictionary, C extends DictionaryCreateRequest, U extends DictionaryUpdateRequest>(props: DictionaryFormProps<T, C, U>) {
   return <Form
       form={props.form}
       name="basic"
@@ -45,4 +37,4 @@ const JobTitleForm = (props: JobTitleFormProps): JSX.Element => {
 
 }
 
-export default JobTitleForm
+export default DictionaryCreateForm

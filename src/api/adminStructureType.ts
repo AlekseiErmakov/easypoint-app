@@ -1,5 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
-import { type AdministrativeUnitTypeCreateRequest, type AdministrativeUnitType } from '../view/structure/admin/types'
+import {
+  type AdministrativeUnitTypeCreateRequest,
+  type AdministrativeUnitType,
+  AdministrativeUnitTypeUpdateRequest
+} from '../view/structure/admin/types'
 import {BASE_URL} from "./costants";
 
 export const adminStructureTypeApi = createApi({
@@ -25,8 +29,23 @@ export const adminStructureTypeApi = createApi({
         body
       }),
       invalidatesTags: ['ADMINISTRATIVE_UNIT_TYPE']
+    }),
+    updateAdminStructureType: build.mutation<void, AdministrativeUnitTypeUpdateRequest>({
+      query: (body) => ({
+        url: `/${body.id}`,
+        method: 'PATCH',
+        body
+      }),
+      invalidatesTags: ['ADMINISTRATIVE_UNIT_TYPE']
+    }),
+    deleteAdminStructureType: build.mutation<void, number>({
+      query: (id) => ({
+        url: `/${id}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['ADMINISTRATIVE_UNIT_TYPE']
     })
   })
 })
 
-export const { useSearchAdminStructureTypeQuery, useCreateAdminStructureTypeMutation } = adminStructureTypeApi
+export const { useSearchAdminStructureTypeQuery, useCreateAdminStructureTypeMutation, useUpdateAdminStructureTypeMutation, useDeleteAdminStructureTypeMutation } = adminStructureTypeApi

@@ -1,7 +1,12 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
-import { type AreaStructureTypeCreateRequest, type AreaStructureType } from '../view/structure/area/types'
+import {
+  type AreaStructureTypeCreateRequest,
+  type AreaStructureType,
+  AreaStructureTypeUpdateRequest
+} from '../view/structure/area/types'
 import {BASE_URL} from "./costants";
+import {AdministrativeUnitTypeUpdateRequest} from "../view/structure/admin/types";
 
 export const areaStructureTypeApi = createApi({
   reducerPath: 'easyPoint/areaStructureType',
@@ -26,8 +31,23 @@ export const areaStructureTypeApi = createApi({
         body
       }),
       invalidatesTags: ['AREA_STRUCTURE_TYPE']
+    }),
+    updateAreaStructureType: build.mutation<void, AreaStructureTypeUpdateRequest>({
+      query: (body) => ({
+        url: `/${body.id}`,
+        method: 'PATCH',
+        body
+      }),
+      invalidatesTags: ['AREA_STRUCTURE_TYPE']
+    }),
+    deleteAreaStructureType: build.mutation<void, number>({
+      query: (id) => ({
+        url: `/${id}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['AREA_STRUCTURE_TYPE']
     })
   })
 })
 
-export const { useSearchAreaStructureTypeQuery, useCreateAreaStructureTypeMutation } = areaStructureTypeApi
+export const { useSearchAreaStructureTypeQuery, useCreateAreaStructureTypeMutation, useUpdateAreaStructureTypeMutation, useDeleteAreaStructureTypeMutation } = areaStructureTypeApi
